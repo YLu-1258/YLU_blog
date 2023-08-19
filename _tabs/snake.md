@@ -38,7 +38,6 @@ order: 2
     <h1 id="game-score">0</h1>
     <canvas width="400" height="400" id="game"></canvas>
     <h1 id="high-score">0</h1>
-    <button onclick="startGame()">Start Game!</button>
 </div>
 
 <script src="../assets/js/pages/snake.js"></script>
