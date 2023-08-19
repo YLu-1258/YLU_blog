@@ -47,6 +47,7 @@ order: 2
     const game_high_score = document.getElementById("high-score");
     const ctx = canvas.getContext("2d");
 
+    // Defining our game variables
     const tileSize = 10;
     let snake = [{x: 10, y: 10}];
     let direction = "right";
@@ -55,12 +56,15 @@ order: 2
     let score = 0;
     let high_score = 0;
         
+    // Randomly generate a food tile for the snake
     function generateFood() {
         const x = Math.floor(Math.random() * canvas.width / tileSize) * tileSize;
         const y = Math.floor(Math.random() * canvas.height / tileSize) * tileSize;
         return { x, y };
     }
 
+    // Arbirtrarily place a wall on the result of a dice roll
+    // I still gotta make sure that the wall doesn't generate on the player instantly killing them
     function generateWall() {
         const res = Math.floor(Math.random()*6)+1
         if (res > 4) {
@@ -70,6 +74,7 @@ order: 2
         }
     }
         
+    // Iterate through our snake, food, and walls to render the game state.
     function draw() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
             
@@ -88,6 +93,7 @@ order: 2
         }
     }
 
+    // Call upon game loss, reset the game to initial state
     function resetGame() {
         snake = [{ x: 10, y: 10 }];
         direction = "right";
@@ -101,7 +107,8 @@ order: 2
         
         gameLoop();
     }
-        
+
+    // Provide pop up window for when player dies    
     function gameOver() {
         const popup = document.createElement("div");
         popup.className = "popup";
@@ -116,6 +123,8 @@ order: 2
         
         container.appendChild(popup);
     }
+
+    // Update the game state
     function update() {
         const head = { ...snake[0] };
             
@@ -150,7 +159,9 @@ order: 2
         }
         game_high_score.innerHTML = high_score;
     }
-        
+
+
+    // Main game loop to host the game    
     function gameLoop() {
         const head = { ...snake[0] };
         draw();
@@ -175,7 +186,8 @@ order: 2
         }
         setTimeout(gameLoop, 120);
     }
-        
+     
+    // track key presses to change snake directions
     document.addEventListener("keydown", (event) => {
         const key = event.key;
         if (key === "ArrowUp" && direction !== "down") direction = "up";
