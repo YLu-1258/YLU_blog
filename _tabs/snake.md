@@ -38,7 +38,7 @@ order: 2
     <h1 id="game-score">0</h1>
     <canvas width="400" height="400" id="game"></canvas>
     <h1 id="high-score">0</h1>
-    <button onclick="resetGame()">Start Game!</button>
+    <button onclick="startGame()">Start Game!</button>
 </div>
 
 <script>
@@ -108,6 +108,18 @@ order: 2
         }
         
         gameLoop();
+    }
+
+    function startGame() {
+        snake = [{ x: 10, y: 10 }];
+        direction = "right";
+        food = generateFood();
+        wall = []
+        
+        const popup = document.querySelector(".popup");
+        if (popup) {
+            popup.remove();
+        }
     }
 
     // Provide pop up window for when player dies    
