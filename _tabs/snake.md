@@ -78,8 +78,9 @@ order: 2
     function draw() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
             
+        
         for (let i = 0; i < snake.length; i++) {
-            ctx.fillStyle = i === 0 ? "white" : "lightgrey";
+            ctx.fillStyle = i === 0 ? "white" : "lightgrey"; // Make the head of the snake white and the body light grey
             ctx.fillRect(snake[i].x, snake[i].y, tileSize, tileSize);
         }
             
