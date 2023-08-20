@@ -23,7 +23,7 @@ for notebook_file in "${notebook_files[@]}"; do
     base_file_name=$(basename "$notebook_file" .ipynb)
     
     # Construct the target Markdown file path
-    markdown_file="${destination_directory}/${base_file_name}_IPYNB_2_.md"
+    markdown_file="${destination_directory}/${base_file_name}.md"
     
     # Add the target file path to the array
     markdown_files+=("$markdown_file")
@@ -35,7 +35,7 @@ function convert () {
         base_file_name=$(basename "$notebook_file" .ipynb)
         
         # Construct the target Markdown file path
-        markdown_file="${destination_directory}/${base_file_name}_IPYNB_2_.md"
+        markdown_file="${destination_directory}/${base_file_name}.md"
         
         # Perform the conversion (replace this with your actual conversion command)
         echo "Converting source $notebook_file to destination $markdown_file"

@@ -14,7 +14,7 @@ destination_directory = "_posts"
 
 def error_cleanup(notebook_file):
     # Remove the destination file if it exists
-    destination_file = os.path.basename(notebook_file).replace(".ipynb", "_IPYNB_2_.md")
+    destination_file = os.path.basename(notebook_file).replace(".ipynb", ".md")
     destination_path = os.path.join(destination_directory, destination_file)
     if os.path.exists(destination_path):
         os.remove(destination_path)
@@ -51,11 +51,11 @@ def convert_notebook_to_markdown_with_front_matter(notebook_file):
         markdown, _ = exporter.from_notebook_node(notebook)
         
         # Prepend the front matter to the Markdown content
-        front_matter_content = "---\n" + "\n".join(f"{key}: {value}" for key, value in front_matter.items()) + "\n---\n\n"
+        front_matter_content = "---\n" + "\n".join(f"{key}: {value}" for i in range(len(front_matter)) for key, value in front_matter[i].items()) + "\n---\n\n"
         markdown_with_front_matter = front_matter_content + markdown
         
         # Generate the destination Markdown file name by replacing the extension
-        destination_file = os.path.basename(notebook_file).replace(".ipynb", "_IPYNB_2_.md")
+        destination_file = os.path.basename(notebook_file).replace(".ipynb", ".md")
 
         # Generate the destination path
         destination_path = os.path.join(destination_directory, destination_file)
