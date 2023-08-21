@@ -12,13 +12,13 @@ order: 2
         background-color: rgb(87, 125, 160);
         border-radius: 0.5em;
         width: 400px;
-        margin-left: 200px;
+        margin-left: 21%;
     }
     #high-score {
         background-color: rgb(255, 60, 0);
         border-radius: 0.5em;
         width: 400px;
-        margin-left: 200px;
+        margin-left: 21%;
     }
     #game {
         display: inline;
@@ -28,7 +28,7 @@ order: 2
         width: 400px;
     }
     #popup {
-        margin-left: 200px;
+        margin-left: 20%;
     }
 </style>
 
