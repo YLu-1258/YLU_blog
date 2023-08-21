@@ -54,6 +54,7 @@ def convert_notebook_to_markdown_with_front_matter(notebook_file):
         front_matter_content = "---\n" + "\n".join(f"{key}: {value}" for i in range(len(front_matter)) for key, value in front_matter[i].items()) + "\n---\n\n"
         markdown_with_front_matter = front_matter_content + markdown
         
+        
         # Generate the destination Markdown file name by replacing the extension
         destination_file = os.path.basename(notebook_file).replace(".ipynb", ".md")
 
