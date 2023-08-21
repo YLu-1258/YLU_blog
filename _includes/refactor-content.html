@@ -213,8 +213,9 @@
 
       {% assign _left = _snippet | split: '><' | last%}
 
+      
       {% if _left contains 'file="' %}
-        {% assign _label_text = _left | split: 'file="' | last | split: '"' | first %}
+        {% assign _label_text = _left | split: 'file="' | last | split: '"' | first | downcase %}
         {% assign _label_icon = 'far fa-file-code fa-fw' %}
       {% else %}
         {% assign _lang = _left | split: 'language-' | last | split: ' ' | first %}

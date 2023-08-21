@@ -54,6 +54,10 @@ def convert_notebook_to_markdown_with_front_matter(notebook_file):
         front_matter_content = "---\n" + "\n".join(f"{key}: {value}" for i in range(len(front_matter)) for key, value in front_matter[i].items()) + "\n---\n\n"
         markdown_with_front_matter = front_matter_content + markdown
         
+        # Convert lines containing triple backticks to lowercase
+        lines = markdown_with_front_matter.split("\n")
+        modified_lines = [line.lower() if '```' in line else line for line in lines]
+        markdown_with_front_matter = "\n".join(modified_lines)
         
         # Generate the destination Markdown file name by replacing the extension
         destination_file = os.path.basename(notebook_file).replace(".ipynb", ".md")
