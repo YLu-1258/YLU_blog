@@ -7,23 +7,24 @@ order: 4
 # Hello There!
 My name is **Alexander Lu**, currently a **Senior** at **Del Norte High School** taking the **APCSA** course, I hope to major in computer science in the future and also pursue it as a prospective carreer path in the future
 
+![Freeform Image](/assets/img/partner_drawing.png){: width="700" height="auto" }
 
 ## My Hobbies 🎾
 
 I have many hobbies that I do to pass my time, here are just a few of them:
 
 > Reading
-{: .prompt-info }
+{: .prompt-tip }
 > Programming
-{: .prompt-info }
+{: .prompt-tip }
 > Playing tennis
-{: .prompt-info }
+{: .prompt-tip }
 > Playing video games
-{: .prompt-info }
+{: .prompt-tip }
 > Watching youtube videos
-{: .prompt-info }
+{: .prompt-tip }
 > And many more!
-{: .prompt-info }
+{: .prompt-tip }
 
 
 ## My Interests 🔬:

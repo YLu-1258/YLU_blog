@@ -97,6 +97,31 @@ class LinkedList {
         curr.next.next = next;
     }
 
+    public Node retrieve(int idx) {
+        if (idx == 0) {
+            return head;
+        }
+        Node curr = head.next;
+        int count = 1;
+        while (count)
+    }
+    public void delete(int data) {
+        Node curr = head;
+        // If head is the value to delete
+        if (curr.data == data) {
+            head = curr.next;
+        }
+        // If head is not hte value to delete
+        while (curr.next != null) {
+            if (curr.next.data == data) {
+                curr.next = curr.next.next;
+                return;
+            }
+            curr = curr.next;
+        }
+        System.out.println("Data value " + data + " is not found in linked list");
+    }
+
     public void print_list() {
         Node curr = head;
         while (curr.next!=null){
@@ -114,10 +139,12 @@ ll1.append(3);
 ll1.append(4);
 ll1.insert(4,5);
 ll1.print_list();
-
+ll1.delete(3);
+ll1.print_list();
 ```
 
     1->2->3->4->5
+    1->2->4->5
 
 
 ## Doubly linked-list
@@ -188,7 +215,33 @@ class DLinkedList {
             curr.next = newnode;
             curr.next.prev = curr;
         }
-        
+    }
+
+    public void delete(int data) {
+        DNode curr = head;
+        // If head is the value to delete
+        if (curr.data == data) {
+            head = curr.next;
+        }
+        // If head is not hte value to delete
+        while (curr.next != null) {
+            if (curr.next.data == data) {
+                curr.next = curr.next.next;
+                return;
+            }
+            curr = curr.next;
+        }
+        System.out.println("Data value " + data + " is not found in linked list");
+    }
+
+    public void push_back(int data) {
+        Dnode curr = head;
+        while (curr.next != null) {
+            curr = curr.next;
+        }
+        curr.next = new DNode(data);
+        curr.next.prev = curr;
+        return
     }
 
     public void print_list() {
@@ -199,19 +252,22 @@ class DLinkedList {
         }
         System.out.print(curr.data + "\n");
     }
+
+
 }
 
 DLinkedList dll1 = new DLinkedList(1);
-System.out.println(dll1.head.data);
 dll1.append(2);
 dll1.append(3);
 dll1.append(4);
 dll1.insert(4,5);
 dll1.print_list();  
+dll1.delete(5);
+dll1.print_list();  
 
 
 ```
 
-    1
     1<->2<->3<->4<->5
+    1<->2<->3<->4
 
