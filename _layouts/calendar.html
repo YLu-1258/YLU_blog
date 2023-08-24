@@ -18,6 +18,7 @@ layout: page
     {% if cur_week != last_week %}
       {% unless forloop.first %}</ul>{% endunless %}
       <div class="week lead">WEEK {{ cur_week }}</div>
+      <blockquote class="prompt-tip">{{ site.data.weeks[cur_week].description }}</blockquote>
       <ul class="list-unstyled">
       {% assign last_week = cur_week %}
     {% endif %}
