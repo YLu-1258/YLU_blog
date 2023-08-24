@@ -4,14 +4,14 @@
 
 @mixin light-scheme {
   /* Framework color */
-  --main-bg: white;
-  --mask-bg: #c1c3c5;
+  --main-bg: #9ec8f3;
+  --mask-bg: #4ba0f4;
   --main-border-color: #f3f3f3;
 
   /* Common color */
   --text-color: #34343c;
-  --text-muted-color: #757575;
-  --heading-color: black;
+  --text-muted-color: #5c5c5c;
+  --heading-color: rgb(84, 84, 84);
   --label-color: #4d4d5b;
   --blockquote-border-color: #eeeeee;
   --blockquote-text-color: #757575;
@@ -37,19 +37,19 @@
   );
 
   /* Sidebar */
-  --site-title-color: rgb(113, 113, 113);
-  --site-subtitle-color: #717171;
-  --sidebar-bg: #f6f8fa;
-  --sidebar-muted-color: #545454;
-  --sidebar-active-color: #1d1d1d;
+  --site-title-color: rgb(241, 241, 241);
+  --site-subtitle-color: rgb(241, 241, 241);
+  --sidebar-bg: #4ba0f4;
+  --sidebar-muted-color: #9ee8ff;
+  --sidebar-active-color: #329af4;
   --sidebar-hover-bg: rgb(223, 233, 241, 0.64);
-  --sidebar-btn-bg: white;
-  --sidebar-btn-color: #8e8e8e;
+  --sidebar-btn-bg: rgb(79, 195, 234);
+  --sidebar-btn-color: #dbdbdb;
   --avatar-border-color: white;
 
   /* Topbar */
-  --topbar-bg: rgb(255, 255, 255, 0.7);
-  --topbar-text-color: rgb(78, 78, 78);
+  --topbar-bg: #9ec8f3;
+  --topbar-text-color: rgb(224, 224, 224);
   --search-wrapper-border-color: rgb(240, 240, 240);
   --search-tag-bg: #f8f9fa;
   --search-icon-color: #c2c6cc;
@@ -65,7 +65,7 @@
   /* Posts */
   --toc-highlight: #47566c;
   --btn-share-hover-color: var(--link-color);
-  --card-bg: white;
+  --card-bg: rgb(153, 224, 244);
   --card-hovor-bg: #e2e2e2;
   --card-shadow: rgb(104, 104, 104, 0.05) 0 2px 6px 0,
     rgba(211, 209, 209, 0.15) 0 0 0 1px;
@@ -106,4 +106,54 @@
   --timeline-color: rgba(0, 0, 0, 0.075);
   --timeline-node-bg: #c2c6cc;
   --timeline-year-dot-color: #ffffff;
+
+  .light {
+    display: none;
+  }
+
+  hr {
+    border-color: var(--main-border-color);
+  }
+
+  /* categories */
+  .categories.card,
+  .list-group-item {
+    background-color: var(--card-bg);
+  }
+
+  .categories {
+    .card-header {
+      background-color: var(--card-header-bg);
+    }
+
+    .list-group-item {
+      border-left: none;
+      border-right: none;
+      padding-left: 2rem;
+      border-color: var(--categories-border);
+
+      &:last-child {
+        border-bottom-color: var(--card-bg);
+      }
+    }
+  }
+
+  #archives li:nth-child(odd) {
+    background-image: linear-gradient(
+      to left,
+      rgb(93, 146, 244),
+      rgb(93, 146, 244),
+      rgb(93, 146, 244),
+      rgb(93, 146, 244),
+      #9ec8f3
+    );
+  }
+
+  color-scheme: light;
+
+  /* stylelint-disable-next-line selector-id-pattern */
+  #disqus_thread {
+    color-scheme: none;
+  }
+
 } /* light-scheme */
