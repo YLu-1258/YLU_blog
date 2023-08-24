@@ -5,7 +5,6 @@ repo_name=alexblog
 log_file="/tmp/jekyll${port}.log"
 # Exceptions will stop make
 shell="/bin/bash"
-shellflags="-e"
 
 
 

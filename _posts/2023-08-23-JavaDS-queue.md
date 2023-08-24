@@ -1,8 +1,10 @@
 ---
 title: Java DS 2 Queue
+description: What is a queue data-structure and how does can it be implemented in Java?
 author: alex
 badges: True
 comments: True
+week: 1
 categories: ['Java', 'tutorials']
 date: 2023-08-20 20:48:00 -0800
 tags: ['notebooks', 'java', 'queue', 'datastructures']
@@ -16,8 +18,8 @@ A queue data structure works in a similar manner. It is a collection of similar 
 
 | Term | Definition |
 |-|-|
-| `PushEnqueue` | To add a new item onto the queue. |
-| `PopDequeue` | To return and remove the first item on the queue |
+| `Push/Enqueue` | To add a new item onto the queue. |
+| `Pop/Dequeue` | To return and remove the first item on the queue |
 | `Peek` | To see the first item on the queue without removing it. |
 
 ## Implementing a Queue
@@ -54,6 +56,7 @@ System.out.println(test_n.data + " " + test_n.next);
 public class Queue {
     private Node front;
     private Node rear;
+    
     Queue () {
         this.front = this.rear = null;
     }
@@ -75,8 +78,7 @@ public class Queue {
 
     public void dequeue () {
         if (this.front == null) {
-            System.out.println("Queue is Empty!");
-            return ;
+            throw new IllegalStateException("Queue is empty");
         }
         this.front = this.front.next;
         if (this.front == null) {
