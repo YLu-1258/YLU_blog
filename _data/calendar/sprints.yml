@@ -1,0 +1,46 @@
+"1":
+  title: Tools and Software Development Processes
+  description: Students should have experience in blogging, coding with Jupyter Notebooks, and GitHub Pages; understnding of Linux, Python, Markdown, HTML, and JavaScript is expected. Students have previously established foundation using essential tools and software development processes. Weeks 0-3 will provide a quick review and students will start their Java coding journey.
+  start: 0
+  end: 3
+
+"2":
+  title: Java Mini-labs
+  description: Students should have understanding of Fundamentals of Programming from Python, JavaScript, or other background. In this Sprint students will become familiar with Java types, booleans, iteration, recursion, using and writing objects through Mini-labs. These labs will introduce AP required aspects of Java, FRQ requirements, and review College Boards 10 Sprints online.
+  start: 4
+  end: 7
+"3":
+  title: Individual/Team Projects, N@tM
+  description: In this Sprint students will continue to become familiar with Java development as they learn Web Development using the Spring Framework. Coding will focus on Restful APIs... receiving requests, working with data, and responding to requests. This will teach key Java concept while using Java Spring framework elements such as a Rest Controller, Plain Old Java Objects (POJOs), Object Relational Model (ORM) and Java Persistent API (JPA).
+  start: 8
+  end: 12
+"4":
+  title: College Board Teaching and Study
+  description: This period students will perform formal teaching and grading on a College Board or College Articulated topic. There will be opportunities for lessons on fundamentals, extended learning on data structures, and/or FRQs. Student teams will have Jupyter notebooks, give tech talks, and and provide Hacks for homework. Teams need to make sure they review College Board materials and think about ways to help classmates succeed on test. Consider balance of lecture, hands-on practice, and lecture during teaching time. A teaching plan is required and must be reviewed by teacher prior to beginning work.
+  start: 13
+  end: 16 
+"5":
+  title: Passion Projects
+  description: Objective of these weeks is to explore and create ideas and concepts for a Team two trimester project. Adding frontend and creativity while using APIs/Databases. This should be a project of personal and team interest. Team projects that are most liked by Teachers and Students will be continued in Trimester 3.
+  start: 17
+  end: 20
+"6":
+  title: Creative Development and N@tM
+  description: This will be most creative portion of year for CSA students. Each person within Student Teams will have their own specialty within their student project that shows Full Stack competency, requiring Java as backend. Intentions for this period is to have a free and creative period, driven by your Issues and Scrum Board. Student should be able to talk about design, do fe/be coding, addd database features and perform weekly live reviews.
+  start: 21
+  end: 24
+"7":
+  title: Data Structures
+  description: A focus Data Structures that relate to the AP exam. A key requirement is to make your own Algo Rythmic sorting video. The theme is produce work that can be used to help you pass the AP Exam and improve your Passion Project. Each student must cover key concepts from one of the Four AP FRQ types, contain a key Data Structure, and utilize sorting. These requirements are fairly generic and could complement any project.
+  start: 25
+  end: 29
+"8":
+  title: AP Weeks
+  description: Student will lead several study sessions (20 minute test, follow by review) the week before the exam. In any break in study, students will transition activities to a final project.
+  start: 30
+  end: 32
+"9":
+  title: Final Project and N@tM
+  description: Wrap up your preferred project. There will be an opportunity to contribute and be published to the NightHawk Coding Society library. If your project is selected, then you will receive a high 'A' on final.
+  start: 33
+  end: 36

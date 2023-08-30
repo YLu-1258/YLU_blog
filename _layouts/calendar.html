@@ -8,32 +8,115 @@ layout: page
 {% assign df_strftime_m = site.data.locales[lang].df.archives.strftime | default: '/ %m' %}
 {% assign df_dayjs_m = site.data.locales[lang].df.archives.dayjs | default: '/ MM' %}
 
+{% assign sprints = site.data.calendar.sprints %} <!-- Load data for each sprint -->
+{% assign units = page.units | split: ',' %} <!-- Load the units from the page -->
+
+{% assign posts = null | compact %}
+{% assign posts = posts | concat:site.posts | concat:site.pages %}
 <div id="archives" class="pl-xl-3">
 
-{% for post in site.posts %}
-  {% if post.week %}
+  {% for unit in units %}
+  {% assign unitData = sprints[unit] %}
+  <blockquote class="prompt-info">
+    <h2>SPRINT {{ unit }}: {{ unitData.title }}</h2>
+  </blockquote>
+  <blockquote class="prompt-tip">  {{ unitData.description }} </blockquote>
+  
+  
+  
+  {% assign start = unitData.start %}
+  {% assign end = unitData.end %}
+  
+  {%comment%} 
+  <!-- Output Column Headings for Blogs -->
+  {%endcomment%}
+  <div class="table-wrapper">
+    <table style="width: 100%;">
+    <tr>
+      <th style="padding: 6.4px 16px;">Week</th>
+      <th style="padding: 6.4px 16px;">Plans</th>
+      <th style="padding: 6.4px 16px;">Hacks(Todo)</th>
+      <th style="padding: 6.4px 16px;">Tangibles</th>
+    </tr>
+  
+  
+    {% assign units = null | compact %}  
+    {% assign sym = "|||" %} 
+    {% assign deli = sym | compact %} 
+    {% for index in (start..end) -%}
+      {% assign plans = null | compact %}
+      {% assign hacks = null | compact %}
+      {% assign tangibles = null | compact %}
 
-    {% capture cur_week %}{{ post.week }}{% endcapture %}
 
-    {% if cur_week != last_week %}
-      {% unless forloop.first %}</ul>{% endunless %}
-      <div class="week lead">WEEK {{ cur_week }}</div>
-      <blockquote class="prompt-tip">{{ site.data.weeks[cur_week].description }}</blockquote>
-      <ul class="list-unstyled">
-      {% assign last_week = cur_week %}
-    {% endif %}
+      {%comment%} 
+      <!-- looping through all posts -->
+      {%endcomment%}
 
-    <li>
-    {% assign ts = post.date | date: '%s' %}
-      <span class="date day" data-ts="{{ ts }}" data-df="DD">{{ post.date | date: "%d" }}</span>
-      <span class="date month small text-muted ms-1" data-ts="{{ ts }}" data-df="{{ df_dayjs_m }}">
-        {{ post.date | date: df_strftime_m }}
-      </span>
-      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-    </li>
+      {% for post in posts %}
 
-    {% if forloop.last %}</ul>{% endif %}
-  {% endif %}
-{% endfor %}
+      {%comment%} 
+      <!-- prepare data blog post data for evaluation -->
+      {%endcomment%}
+          {% assign week = post.week | tangibles: 0 %}
+          {% assign title = post.title | compact %}
+          {% assign url = post.url | compact %}
+    
+      {%comment%} 
+      <!-- process posts for current week -->
+      {%endcomment%}
+          
+      {% if week == index %} 
+      {%comment%} 
+      <!-- organizing blogs by type -->
+      {%endcomment%}
+            {% if post.type == "plans" %} 
+                {% assign plans = plans | unshift: title %}
+                {% assign plans = plans | unshift: url %}
+            {% elsif post.type == "hacks" %}
+                {% assign hacks = hacks | unshift: title %}
+                {% assign hacks = hacks | unshift: url %} 
+            {% elsif post.type == "tangibles" %}
+                {% assign tangibles = tangibles | unshift: title %}
+                {% assign tangibles = tangibles | unshift: url %} 
+            {% else %}
+                {% assign uk = uk | unshift: title %}
+                {% assign uk = uk | unshift: url %}     
+            {% endif %}
+          {% endif %}
 
+
+      {% endfor %}
+
+    {%comment%} 
+    <!-- ordering units and inserting column delimiters -->
+    {%endcomment%}
+    {% assign units = units | concat:plans | concat:deli | concat:hacks | concat:deli | concat:tangibles  %}
+
+    {%comment%} 
+    <!-- This Loop is maximum iterationss, since elements are pairs it will decrement a extra times at the end -->
+    {%endcomment%}
+    <tr>
+    <td> {{ index }} </td> 
+    <td>
+    {% for i in (0..units.size) -%} 
+      {% if units.size == 0 %}
+        {% break %}
+      {% elsif units[0] == sym %} <!-- make new column -->
+        </td>
+        <td>
+        {% assign units = units | shift %} <!-- remove delimiter -->
+      {% else %} <!-- make a link in the column -->
+        <a href="{{site.baseurl}}/{{units[0]}}" style="margin: 0;">{{units[1]}}</a> <br/> 
+        {% assign units = units | shift | shift %} <!-- remove title and url -->
+      {% endif %}
+    {% endfor %}
+    </td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+    {% endfor %}
+
+  
 </div>

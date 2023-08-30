@@ -7,7 +7,7 @@ categories: ['C4.0']
 comments: True
 week: 1
 date: 2023-08-23 09:08:00 -0800
-type: ccc
+type: plans
 ---
 
 ## Hello, World!
@@ -136,11 +136,11 @@ Build your own Jupyter Notebook meeting these College Board and CTE competencies
 
 
 Additional requirements (Pick something)
-1. Go through code progression of understanding Class usage and generating an Instance of a Class (Object). 
-    a. Build a purposeful dynamic Class, using an Object, generate multiple instances: 
-        - Person: Name and Age
-        - Dessert: Type and Cost
-        - Location: City, State, Zip
+1. Go through code progression of understanding Class usage and generating an Instance of a Class (Object).  
+    a. Build a purposeful dynamic Class, using an Object, generate multiple instances:  
+        - Person: Name and Age  
+        - Dessert: Type and Cost  
+        - Location: City, State, Zip  
     b. Create a static void main tester method to generate objects of the class.
     c. In tester method, show how setters/mutators can be used to make the data in the Object dynamically change
 3. Go through progression of understanding a Static Class.  Build a purposeful static Class, no Objects.
