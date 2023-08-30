@@ -9,6 +9,7 @@ categories: ['Java', 'tutorials']
 date: 2023-08-20 20:48:00 -0800
 tags: ['notebooks', 'java', 'queue', 'datastructures']
 render_with_liquid: False
+type: tangibles
 ---
 
 # Queue

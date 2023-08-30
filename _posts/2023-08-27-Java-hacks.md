@@ -4,7 +4,7 @@ description: What are the aspects of a class? What does the static keyword do in
 author: alex
 badges: True
 comments: True
-week: 2
+week: 1
 categories: ['Java', 'hacks']
 date: 2023-08-27 08:48:00 -0800
 tags: ['notebooks', 'java', 'hacks', 'OOP']

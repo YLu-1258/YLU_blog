@@ -8,6 +8,7 @@ date: 2023-08-20 20:48:00 -0800
 tags: ['notebooks', 'java', 'linkedlist', 'datastructures']
 week: 1
 render_with_liquid: False
+type: tangibles
 ---
 
 # Linked Lists
