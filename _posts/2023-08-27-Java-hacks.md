@@ -308,9 +308,9 @@ public class Game {
 }
 ```
 
-## 
+## Optimizing Games
 
-Now that we have gotten our menu to work recursively, we could work on optmizing our game.
+Now that we have gotten our menu to work recursively, we could work on optmizing our game. The idea is that I could create a parent class called `GameObject` which will contain basic parameters of my games. I would then create subclasses inheriting from this `GameObject` class.
 
 
 ```java
@@ -320,6 +320,8 @@ public class GameObject {
     protected static Random random = new Random();
 }
 ```
+
+### Higher or Lower
 
 Here is the code for my implementation of the "Higher or Lower game". As you can see, the implementation creates a seperate class for the game which inherits certain attributes from `GameObject`. 
 
@@ -349,6 +351,8 @@ public class HORL extends GameObject {
     }
 }
 ```
+
+### Rock Paper Scissors
 
 
 ```java
@@ -391,6 +395,8 @@ public class RPS extends GameObject {
     }
 }
 ```
+
+### Tic Tac Toe
 
 
 ```java
