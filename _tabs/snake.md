@@ -2,6 +2,7 @@
 layout: page
 icon: fas fa-staff-snake
 order: 2
+type: hacks
 ---
 <style>
     #game-container {
