@@ -115,21 +115,7 @@
       border-bottom: none;
     }
 
-    &::before {
-      /* the dot before post title */
-      content: '';
-      display: inline-block;
-      position: relative;
-      border-radius: 50%;
-      width: 8px;
-      height: 8px;
-      float: left;
-      top: 1.35rem;
-      left: 71px;
-      background-color: var(--timeline-node-bg);
-      box-shadow: 0 0 3px 0 #c2c6cc;
-      z-index: 1;
-    }
+
   }
 } /* #archives */
 

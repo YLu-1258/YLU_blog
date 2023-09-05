@@ -1,0 +1,9 @@
+#TODO {
+    width: 100%;
+}
+
+.background {
+    background-color: rgba(5, 23, 46, 0.75);
+    padding: 2em;
+    border-radius: 5%;
+}
