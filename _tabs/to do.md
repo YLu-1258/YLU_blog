@@ -32,8 +32,8 @@ type: hacks
 
 <script>
     var table1 = document.getElementById("TODO").getElementsByTagName('tbody')[0];
-    var index_count = 0;
-    new_input_row();
+    var index_count = 0; // replace with value of index_count in local storage
+    new_input_row(); // replace with function to render from local storage
     let table = new DataTable('#TODO');
     table.draw();
 </script>

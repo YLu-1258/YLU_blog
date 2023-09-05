@@ -25,13 +25,17 @@ function storeLocally() {
     
     for (var i = 0; i < table1.rows.length; i++) {
         console.log("slocal");
-        json == '{"name": "' + table1.rows[i].cells[1].querySelector('input').value + ""," + table1.rows[i].cells[2].querySelector('input').value + " " + table1.rows[i].cells[3].querySelector('input').value; + "}" 
-        localStorage.setItem(row, JSON.stringify(json));
+        json = '{"name": "' + table1.rows[i].cells[1].querySelector('input').value + '","class": "' + table1.rows[i].cells[2].querySelector('input').value + '","due": "' + table1.rows[i].cells[3].querySelector('input').value + '"}'; 
+        localStorage.setItem(row, json);
         localStorage.setItem("index_count", index_count);
         console.log(row + json);
         json = "";
         row++;
     }
+}
+
+function readStorage() {
+    
 }
 
 function detect_completion(event, row) {
