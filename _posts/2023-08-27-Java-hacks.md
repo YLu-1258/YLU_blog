@@ -255,7 +255,7 @@ public class Game {
         }
         game_loop();
     }
-    public static void game_selection(int choice) {
+    private static void game_selection(int choice) {
         switch (choice) {
             case 0:
                 System.out.println("Goodbye, hope you had fun");
@@ -432,7 +432,7 @@ public class TTT extends GameObject {
         }
         
     }
-    public static void player_v_player() {
+    private static void player_v_player() {
         while (true) {
             available_choices = get_available_indices();
             if ((check_game() == 'X') || (check_game() == 'O') || (check_game() == '_')) {
@@ -458,7 +458,7 @@ public class TTT extends GameObject {
             }
         }
     }
-    public static void player_v_computer(){
+    private static void player_v_computer(){
         while (true) {
             available_choices = get_available_indices();
             if ((check_game() == 'X') || (check_game() == 'O') || (check_game() == '_')) {
@@ -489,7 +489,7 @@ public class TTT extends GameObject {
     // "O": Player O won
     // "_": Tie
     // "-": Nothing
-    public static char check_game() {
+    private static char check_game() {
         if ((game_state[0] == game_state[1] && game_state[1] == game_state[2]) ||
             (game_state[0] == game_state[4] && game_state[4] == game_state[8]) ||
             (game_state[0] == game_state[3] && game_state[3] == game_state[6])) {
@@ -520,7 +520,7 @@ public class TTT extends GameObject {
         return true;
     }
 
-    public static void print_state(){
+    private static void print_state(){
         System.out.println("     |     |     \t\t     |     |     ");
         System.out.println("  " + game_state[0] + "  |  " + game_state[1] + "  |  " + game_state[2] + "  \t\t" + "  1  |  2  |  3  ");
         System.out.println("_____|_____|_____\t\t_____|_____|_____");
@@ -532,7 +532,7 @@ public class TTT extends GameObject {
         System.out.println("     |     |     \t\t     |     |     ");
     }
 
-    public static ArrayList<Integer> get_available_indices(){
+    private static ArrayList<Integer> get_available_indices(){
         ArrayList<Integer> available_indices = new ArrayList<Integer>();
         for (int i = 0; i < game_state.length; i++) {
             if (game_state[i] == '-') {
@@ -586,6 +586,27 @@ Game.game_loop();
     Choose an option.
     
     Current Wins: 0
+    2: Playing higher or lower
+    In Higher-or-lower, the game will give you a random number (1-10) to guess within 3 tries
+    Please Guess a number (1-10)
+    Too low!
+    Please Guess a number (1-10)
+    Too high!
+    Please Guess a number (1-10)
+    You got it! Nice job!
+    [45m[97m___________________________
+    |~~~~~~~~~~~~~~~~~~~~~~~~~|
+    |          Menu!          |
+    |~~~~~~~~~~~~~~~~~~~~~~~~~|
+    | [91m0 - Exit[97m                |
+    | [92m1 - Rock Paper Scissors[97m |
+    | [93m2 - Higher or Lower[97m     |
+    | [96m3 - Tic Tac Toe[97m         |
+    |_________________________|[0m
+    
+    Choose an option.
+    
+    Current Wins: 1
     3: Playing tic tac toe
     Welcome to Tic-Tac-Toe!
     Choose an option:
@@ -600,60 +621,69 @@ Game.game_loop();
          |     |     		     |     |     
       -  |  -  |  -  		  7  |  8  |  9  
          |     |     		     |     |     
-    Please select an available slot to place your marker:
+    Player X, please select an available slot to place your marker:
          |     |     		     |     |     
-      -  |  -  |  -  		  1  |  2  |  3  
+      X  |  -  |  -  		  1  |  2  |  3  
     _____|_____|_____		_____|_____|_____
          |     |     		     |     |     
-      -  |  X  |  -  		  4  |  5  |  6  
+      -  |  -  |  -  		  4  |  5  |  6  
     _____|_____|_____		_____|_____|_____
          |     |     		     |     |     
-      -  |  -  |  O  		  7  |  8  |  9  
+      -  |  -  |  -  		  7  |  8  |  9  
          |     |     		     |     |     
-    Please select an available slot to place your marker:
+    Player O, please select an available slot to place your marker:
          |     |     		     |     |     
-      -  |  O  |  -  		  1  |  2  |  3  
+      X  |  -  |  -  		  1  |  2  |  3  
     _____|_____|_____		_____|_____|_____
          |     |     		     |     |     
-      -  |  X  |  -  		  4  |  5  |  6  
+      -  |  O  |  -  		  4  |  5  |  6  
     _____|_____|_____		_____|_____|_____
          |     |     		     |     |     
-      -  |  X  |  O  		  7  |  8  |  9  
+      -  |  -  |  -  		  7  |  8  |  9  
          |     |     		     |     |     
-    Please select an available slot to place your marker:
+    Player X, please select an available slot to place your marker:
          |     |     		     |     |     
-      -  |  O  |  O  		  1  |  2  |  3  
+      X  |  -  |  -  		  1  |  2  |  3  
     _____|_____|_____		_____|_____|_____
          |     |     		     |     |     
-      X  |  X  |  -  		  4  |  5  |  6  
+      -  |  O  |  -  		  4  |  5  |  6  
     _____|_____|_____		_____|_____|_____
          |     |     		     |     |     
-      -  |  X  |  O  		  7  |  8  |  9  
+      -  |  -  |  X  		  7  |  8  |  9  
          |     |     		     |     |     
-    Please select an available slot to place your marker:
+    Player O, please select an available slot to place your marker:
+         |     |     		     |     |     
+      X  |  -  |  O  		  1  |  2  |  3  
+    _____|_____|_____		_____|_____|_____
+         |     |     		     |     |     
+      -  |  O  |  -  		  4  |  5  |  6  
+    _____|_____|_____		_____|_____|_____
+         |     |     		     |     |     
+      -  |  -  |  X  		  7  |  8  |  9  
+         |     |     		     |     |     
+    Player X, please select an available slot to place your marker:
+         |     |     		     |     |     
+      X  |  -  |  O  		  1  |  2  |  3  
+    _____|_____|_____		_____|_____|_____
+         |     |     		     |     |     
+      -  |  O  |  -  		  4  |  5  |  6  
+    _____|_____|_____		_____|_____|_____
+         |     |     		     |     |     
+      X  |  -  |  X  		  7  |  8  |  9  
+         |     |     		     |     |     
+    Player O, please select an available slot to place your marker:
+         |     |     		     |     |     
+      X  |  -  |  O  		  1  |  2  |  3  
+    _____|_____|_____		_____|_____|_____
+         |     |     		     |     |     
+      -  |  O  |  -  		  4  |  5  |  6  
+    _____|_____|_____		_____|_____|_____
+         |     |     		     |     |     
+      X  |  O  |  X  		  7  |  8  |  9  
+         |     |     		     |     |     
+    Player X, please select an available slot to place your marker:
     X
     Player 1 has won!
-    [45m[97m___________________________
-    |~~~~~~~~~~~~~~~~~~~~~~~~~|
-    |          Menu!          |
-    |~~~~~~~~~~~~~~~~~~~~~~~~~|
-    | [91m0 - Exit[97m                |
-    | [92m1 - Rock Paper Scissors[97m |
-    | [93m2 - Higher or Lower[97m     |
-    | [96m3 - Tic Tac Toe[97m         |
-    |_________________________|[0m
-    
-    Choose an option.
-    
-    Current Wins: 1
-    2: Playing higher or lower
-    In Higher-or-lower, the game will give you a random number (1-10) to guess within 3 tries
-    Please Guess a number (1-10)
-    Too high!
-    Please Guess a number (1-10)
-    Too low!
-    Please Guess a number (1-10)
-    You got it! Nice job!
     [45m[97m___________________________
     |~~~~~~~~~~~~~~~~~~~~~~~~~|
     |          Menu!          |
