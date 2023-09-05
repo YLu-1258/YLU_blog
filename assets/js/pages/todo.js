@@ -1,4 +1,4 @@
-function new_input_row() {
+function newInputRow() {
 	index_count++;
 	var row = table1.insertRow(-1);
 	var index = row.insertCell(0);
@@ -11,7 +11,7 @@ function new_input_row() {
 		let new_input = document.createElement("input");
 		new_input.setAttribute("type", "text");
 		new_input.addEventListener("keydown", function(event) {
-			detect_completion(event, row);
+			detectCompletion(event, row);
 		});
 		columns[i].appendChild(new_input);
 		i++;
@@ -35,30 +35,50 @@ function storeLocally() {
 }
 
 function readStorage() {
+    idxCount = localStorage.getItem("index_count");
+    if (!localStorage.getItem(1)) {
+        console.log("hey");
+        newInputRow();
+        index_count = 1;
+        return;
+    }
+    else {
+        for (let i = 0; i<idxCount; i++) {
+            data = localStorage.getItem(i+1);
+            dataParsed = JSON.parse(data);
+            newInputRow();
+            table1.rows[i].cells[1].querySelector('input').value = dataParsed["name"];
+            table1.rows[i].cells[2].querySelector('input').value = dataParsed["class"];
+            table1.rows[i].cells[3].querySelector('input').value = dataParsed["due"];
+        }
+
+    }
     
 }
 
-function detect_completion(event, row) {
+function detectCompletion(event, row) {
 	let key_pressed = event.key;
 	if (key_pressed == "Tab" || key_pressed == "Enter") {
 		console.log("detect")
 		console.log("row.cells=" + row.cells[0].innerHTML)
 		console.log("idx=" + index_count)
 		event.preventDefault();
+        storeLocally();
 		if (row.cells[0].innerHTML == index_count) {
-			console.log("pass1")
+			console.log("pass1");
 			for (var i = 1; i < row.cells.length; i++) {
 				let cell_input = row.cells[i].querySelector('input');
 				if (cell_input) {
 					console.log("pass2")
-                    storeLocally();
+                    
+                    
 					let content = cell_input.value.trim();
 					if (content === "") {
 						return;
 					}
 				}
 			}
-			new_input_row();
+			newInputRow();
 		}
 	}
 }
@@ -85,5 +105,4 @@ function getNewQuote() {
 		xhr.setRequestHeader('X-RapidAPI-Host', 'quotes-inspirational-quotes-motivational-quotes.p.rapidapi.com');
 		
 		xhr.send(data);
-		
 }

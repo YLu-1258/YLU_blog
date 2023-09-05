@@ -15,7 +15,7 @@ type: hacks
     <p id="quote"></p>
     <p id="author"></p>
 </div>
-<div class="table-wrapper">
+<div class="table-wrapper background">
     <table id="TODO" class="todo-table">
         <thead>
             <th>Index</th>
@@ -32,8 +32,9 @@ type: hacks
 
 <script>
     var table1 = document.getElementById("TODO").getElementsByTagName('tbody')[0];
-    var index_count = 0; // replace with value of index_count in local storage
-    new_input_row(); // replace with function to render from local storage
+    var index_count = 0;
+    // var index_count = localStorage.getItem("index_count");; // replace with value of index_count in local storage
+    readStorage();
     let table = new DataTable('#TODO');
     table.draw();
 </script>
