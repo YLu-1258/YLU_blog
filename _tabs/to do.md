@@ -32,8 +32,7 @@ type: hacks
 
 <script>
     var table1 = document.getElementById("TODO").getElementsByTagName('tbody')[0];
-    var index_count = 0;
-    var index_count = localStorage.getItem("index_count");
+    var indexCount = localStorage.getItem("indexCount");
     readStorage();
     let table = new DataTable('#TODO');
     table.draw();

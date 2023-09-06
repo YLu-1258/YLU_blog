@@ -1,11 +1,11 @@
 function newInputRow() {
-	index_count++;
-	var row = table1.insertRow(-1);
-	var index = row.insertCell(0);
-	var task = row.insertCell(1);
-	var class_name = row.insertCell(2);
-	var deadline = row.insertCell(3);
-	let columns = [task, class_name, deadline];
+	
+	let row = table1.insertRow(-1);
+	let index = row.insertCell(0);
+	let task = row.insertCell(1);
+	let className = row.insertCell(2);
+	let deadline = row.insertCell(3);
+	let columns = [task, className, deadline];
 	let i = 0;
 	while (i < columns.length) {
 		let new_input = document.createElement("input");
@@ -16,18 +16,19 @@ function newInputRow() {
 		columns[i].appendChild(new_input);
 		i++;
 	}
-	index.innerHTML += index_count;
+	index.innerHTML += indexCount;
+	indexCount++;
 }
 
 function storeLocally() {
-    var json = "";
+    let json = "";
     row = 1;
     
-    for (var i = 0; i < table1.rows.length; i++) {
+    for (let i = 0; i < table1.rows.length; i++) {
         console.log("slocal");
         json = '{"name": "' + table1.rows[i].cells[1].querySelector('input').value + '","class": "' + table1.rows[i].cells[2].querySelector('input').value + '","due": "' + table1.rows[i].cells[3].querySelector('input').value + '"}'; 
         localStorage.setItem(row, json);
-        localStorage.setItem("index_count", index_count);
+        localStorage.setItem("indexCount", indexCount);
         console.log(row + json);
         json = "";
         row++;
@@ -35,14 +36,15 @@ function storeLocally() {
 }
 
 function readStorage() {
-    idxCount = localStorage.getItem("index_count");
-    if (!localStorage.getItem(1)) {
+    
+    if (!localStorage.getItem("indexCount")) {
         console.log("hey");
+		indexCount = 1;
         newInputRow();
-        index_count = 1;
         return;
     }
     else {
+		idxCount = localStorage.getItem("indexCount");
         for (let i = 0; i<idxCount; i++) {
             data = localStorage.getItem(i+1);
             dataParsed = JSON.parse(data);
@@ -61,12 +63,12 @@ function detectCompletion(event, row) {
 	if (key_pressed == "Tab" || key_pressed == "Enter") {
 		console.log("detect")
 		console.log("row.cells=" + row.cells[0].innerHTML)
-		console.log("idx=" + index_count)
+		console.log("idx=" + indexCount)
 		event.preventDefault();
         storeLocally();
-		if (row.cells[0].innerHTML == index_count) {
+		if (row.cells[0].innerHTML == indexCount) {
 			console.log("pass1");
-			for (var i = 1; i < row.cells.length; i++) {
+			for (let i = 1; i < row.cells.length; i++) {
 				let cell_input = row.cells[i].querySelector('input');
 				if (cell_input) {
 					console.log("pass2")
