@@ -2,8 +2,19 @@
     width: 100%;
 }
 
+input {
+    width: 80%;
+}
 .background {
     background-color: rgba(5, 23, 46, 0.75);
     padding: 2em;
     border-radius: 5%;
+}
+
+.quote {
+    font-style: italic;
+    font-size: 28px;
+}
+.author {
+    font-size: 20px;
 }

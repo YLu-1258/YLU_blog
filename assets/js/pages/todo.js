@@ -98,7 +98,7 @@ function getNewQuote() {
 				quote = (this.responseText);
 						quoteParsed = JSON.parse(quote);
 						document.getElementById("quote").innerHTML = quoteParsed["text"];
-						document.getElementById("author").innerHTML = quoteParsed["author"];
+						document.getElementById("author").innerHTML = "-" + quoteParsed["author"];
 						console.log(quoteParsed["author"]);
 						console.log(quoteParsed["text"]);
 			}

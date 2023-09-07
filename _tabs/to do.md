@@ -12,8 +12,8 @@ type: hacks
 <script src="{{site.baseurl}}/assets/js/pages/todo.js"></script>
 <body onload="getNewQuote();">
 <div id = "quoteDiv">
-    <p id="quote"></p>
-    <p id="author"></p>
+    <p id="quote" class="background"></p>
+    <p id="author" class="background"></p>
 </div>
 <div class="table-wrapper background">
     <table id="TODO" class="todo-table">
