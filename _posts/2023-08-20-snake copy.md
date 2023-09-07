@@ -14,7 +14,7 @@ week: 2
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <script src="{{site.baseurl}}/assets/js/pages/todo.js"></script>
 <body onload="getNewQuote();">
-<div id = "quoteDiv">
+<div id = "quoteDiv">input
     <p id="quote"></p>
     <p id="author"></p>
 </div>

@@ -1,5 +1,5 @@
-function newInputRow() {
-	
+function newInputRow(idx) {
+	// Create new row of inputs in the todo table, increment the 
 	let row = table1.insertRow(-1);
 	let index = row.insertCell(0);
 	let task = row.insertCell(1);
@@ -8,19 +8,20 @@ function newInputRow() {
 	let columns = [task, className, deadline];
 	let i = 0;
 	while (i < columns.length) {
-		let new_input = document.createElement("input");
-		new_input.setAttribute("type", "text");
-		new_input.addEventListener("keydown", function(event) {
+		let newInput = document.createElement("input");
+		newInput.setAttribute("type", "text");
+		newInput.addEventListener("keydown", function(event) {
 			detectCompletion(event, row);
 		});
-		columns[i].appendChild(new_input);
+		columns[i].appendChild(newInput);
 		i++;
 	}
-	index.innerHTML += indexCount;
-	indexCount++;
+	index.innerHTML += idx;
+	
 }
 
 function storeLocally() {
+	// Store a row of information as JSON in browser local storage
     let json = "";
     row = 1;
     
@@ -36,29 +37,30 @@ function storeLocally() {
 }
 
 function readStorage() {
-    
+    // Read the storage, add rows to the todo-list
     if (!localStorage.getItem("indexCount")) {
         console.log("hey");
 		indexCount = 1;
-        newInputRow();
+        newInputRow(1);
         return;
     }
     else {
-		idxCount = localStorage.getItem("indexCount");
-        for (let i = 0; i<idxCount; i++) {
+		indexCount = localStorage.getItem("indexCount");
+        for (let i = 0; i<=indexCount-1; i++) {
+			console.log(i);
             data = localStorage.getItem(i+1);
             dataParsed = JSON.parse(data);
-            newInputRow();
+            newInputRow(i+1);
             table1.rows[i].cells[1].querySelector('input').value = dataParsed["name"];
             table1.rows[i].cells[2].querySelector('input').value = dataParsed["class"];
             table1.rows[i].cells[3].querySelector('input').value = dataParsed["due"];
         }
 
     }
-    
 }
 
 function detectCompletion(event, row) {
+	// Whenever we press enter or table, we wnat to check
 	let key_pressed = event.key;
 	if (key_pressed == "Tab" || key_pressed == "Enter") {
 		console.log("detect")
@@ -72,20 +74,20 @@ function detectCompletion(event, row) {
 				let cell_input = row.cells[i].querySelector('input');
 				if (cell_input) {
 					console.log("pass2")
-                    
-                    
 					let content = cell_input.value.trim();
-					if (content === "") {
+					if (content === "") { 
 						return;
 					}
 				}
 			}
-			newInputRow();
+			newInputRow(++indexCount);
+			
 		}
 	}
 }
 
 function getNewQuote() {
+	// Get new motivational quote from the API
 		const data = null;
 
 		const xhr = new XMLHttpRequest();
