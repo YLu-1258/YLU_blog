@@ -1,3 +1,5 @@
+const date = new Date();
+
 function newInputRow(idx) {
 	// Create new row of inputs in the todo table, increment the 
 	let row = table1.insertRow(-1);
@@ -9,7 +11,11 @@ function newInputRow(idx) {
 	let i = 0;
 	while (i < columns.length) {
 		let newInput = document.createElement("input");
-		newInput.setAttribute("type", "text");
+		if (i > 1) {
+			newInput.setAttribute("type", "date");
+		} else {
+			newInput.setAttribute("type", "text");
+		}
 		newInput.addEventListener("keydown", function(event) {
 			detectCompletion(event, row);
 		});
@@ -68,6 +74,11 @@ function detectCompletion(event, row) {
 		console.log("idx=" + indexCount)
 		event.preventDefault();
         storeLocally();
+		// Check for date of the deadline
+		let currentRowDate = row.cells[3].querySelector('input').valueAsDate;
+		if (compareDates(currentRowDate)) {
+			row.style.backgroundColor = "red";
+		}
 		if (row.cells[0].innerHTML == indexCount) {
 			console.log("pass1");
 			for (let i = 1; i < row.cells.length; i++) {
@@ -86,6 +97,15 @@ function detectCompletion(event, row) {
 	}
 }
 
+function compareDates(date1) {
+	console.log("DATE1:" + date1);
+	let toDoDateUnix1 = date1.getTime();
+	let toDoDateUnix2 = date.getTime(); 
+	if (toDoDateUnix1 >= toDoDateUnix2) {
+		return false;
+	}
+	return true;
+}
 function getNewQuote() {
 	// Get new motivational quote from the API
 		const data = null;
