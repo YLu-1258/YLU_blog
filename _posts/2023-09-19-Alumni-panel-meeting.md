@@ -1,7 +1,7 @@
 ---
 title: Alumni Panel
 author: alex
-date: 2023-09-19 15:50:00 -0800
+date: 2023-09-19 15:10:00 -0800
 categories: [Blogging, Events]
 tags: [Extra Credit, alumni]
 render_with_liquid: false
