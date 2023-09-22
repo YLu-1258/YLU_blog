@@ -29,7 +29,7 @@ Additionally, our `WeightedGraph()` object should support opperations to create 
 ```java
 import java.util.HashMap;       // Import the Hashmap that we'll need for this implementation
 import java.util.PriorityQueue; // Import the PriorityQueue that we'll need for Dijkstra's Algorithm
-import java.util.ArrayList;
+import java.util.ArrayList;     // Import the Array List that we'll need
 ```
 
 
