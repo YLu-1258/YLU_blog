@@ -29,6 +29,7 @@ Additionally, our `WeightedGraph()` object should support opperations to create 
 ```java
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.Stack;
 ```
 
 
@@ -156,6 +157,7 @@ Node vertice7 = new Node(7);
 Node vertice8 = new Node(8);
 Node vertice9 = new Node(9);
 Node vertice10 = new Node(10);
+Node vertice11 = new Node(11);
 
 
 test.addVertice(vertice1);
@@ -168,6 +170,7 @@ test.addVertice(vertice7);
 test.addVertice(vertice8);
 test.addVertice(vertice9);
 test.addVertice(vertice10);
+test.addVertice(vertice11);
 
 test.addEdgeToGraph(10, 1, 50);
 test.addEdgeToGraph(1, 2, 3);
@@ -206,6 +209,7 @@ for (Node node: sampleList) {
     8 : {6=10, 7=8, 9=9, 10=20000}
     9 : {7=2, 8=9, 10=1000}
     10 : {1=50, 2=40, 8=20000, 9=1000}
+    11 : {}
 
 
 ## Dijkstra methods
@@ -277,18 +281,25 @@ public class DijkstraAlgorithm {
             + optimalDistance.getValue());
         }
     }
+
 }
 DijkstraAlgorithm.main(null);
 ```
 
-    Shortest distance from vertex 9 to vertex 5 is: 12
-    Shortest distance from vertex 9 to vertex 7 is: 2
-    Shortest distance from vertex 9 to vertex 3 is: 20
-    Shortest distance from vertex 9 to vertex 4 is: 13
-    Shortest distance from vertex 9 to vertex 8 is: 9
-    Shortest distance from vertex 9 to vertex 6 is: 8
+    Shortest distance from vertex 9 to vertex 1 is: 22
+    Shortest distance from vertex 9 to vertex 11 is: 2147483646
     Shortest distance from vertex 9 to vertex 2 is: 19
     Shortest distance from vertex 9 to vertex 9 is: 0
     Shortest distance from vertex 9 to vertex 10 is: 59
-    Shortest distance from vertex 9 to vertex 1 is: 22
+    Shortest distance from vertex 9 to vertex 4 is: 13
+    Shortest distance from vertex 9 to vertex 8 is: 9
+    Shortest distance from vertex 9 to vertex 3 is: 20
+    Shortest distance from vertex 9 to vertex 7 is: 2
+    Shortest distance from vertex 9 to vertex 5 is: 12
+    Shortest distance from vertex 9 to vertex 6 is: 8
 
+
+
+```java
+
+```
