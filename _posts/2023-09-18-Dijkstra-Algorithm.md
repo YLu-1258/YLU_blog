@@ -220,21 +220,23 @@ for (Node node: sampleList) {
 public class DijkstraAlgorithm {
     private static final int inf = Integer.MAX_VALUE;
     private static HashMap<Node, Integer> ShortestDistanceMap;
-    private static HashMap<Node, Integer> ParentVerticesMap;
+    private static HashMap<Integer, Integer> ParentVerticesMap;
     private static ArrayList<Node> NodeArrayList;
     private static Node CurrentNodeToTraverse;
     private static int alt;
-
+    private static BiDirectionalWeightedGraph InputGraph;
+    
     
     public static HashMap<Node, Integer> dijkstra(BiDirectionalWeightedGraph Graph, int SourceVertexLabel) {
+        InputGraph = Graph;
         ShortestDistanceMap = new HashMap<Node, Integer>();
-        ParentVerticesMap = new HashMap<Node, Integer>();
+        ParentVerticesMap = new HashMap<Integer, Integer>();
         NodeArrayList = new ArrayList<Node>();
-        Node SourceVertextNodeObject = Graph.getVerticeFromLabel(SourceVertexLabel);
+        Node SourceVertextNodeObject = InputGraph.getVerticeFromLabel(SourceVertexLabel);
         Node CurrentNodeToTraverse;
-        for (Node vertice : Graph.RetrieveArrayofVertices()) {
+        for (Node vertice : InputGraph.RetrieveArrayofVertices()) {
             ShortestDistanceMap.put(vertice, inf-1);
-            ParentVerticesMap.put(vertice, null);
+            ParentVerticesMap.put(vertice.getIndex(), null);
             NodeArrayList.add(vertice);
         }
 
@@ -245,12 +247,12 @@ public class DijkstraAlgorithm {
             NodeArrayList.remove(CurrentNodeToTraverse);
 
             for (int verticeLabel : CurrentNodeToTraverse.getNeighborsOfVertice()) {
-                Node vertice = Graph.getVerticeFromLabel(verticeLabel);
+                Node vertice = InputGraph.getVerticeFromLabel(verticeLabel);
                 if (NodeArrayList.contains(vertice)) {
                     alt = ShortestDistanceMap.get(CurrentNodeToTraverse) + vertice.getDistanceBetweenTwoVertices(CurrentNodeToTraverse);
                     if (alt < ShortestDistanceMap.get(vertice)) {
                         ShortestDistanceMap.put(vertice, alt);
-                        ParentVerticesMap.put(vertice, CurrentNodeToTraverse.getIndex());
+                        ParentVerticesMap.put(vertice.getIndex(), CurrentNodeToTraverse.getIndex());
                     }
                 }
             } 
@@ -272,6 +274,20 @@ public class DijkstraAlgorithm {
         return optimalNode;
     }
 
+    public static Stack<Integer> ReverseIteratePath (int sourceNodetoIterate, int targetNodetoIterate) {
+        Stack<Integer> ShortestPathStack = new Stack<Integer>();
+        System.out.println(ParentVerticesMap.get(targetNodetoIterate));
+        Integer CurrentNodeToTrace = targetNodetoIterate;
+        if (ParentVerticesMap.get(CurrentNodeToTrace)!=null || CurrentNodeToTrace == sourceNodetoIterate) {
+            System.out.println("HELLLLLLLLLO IF THIS RUNS I THINK JAVA IS BROKEN");
+            while (CurrentNodeToTrace!=null) {
+                ShortestPathStack.push(CurrentNodeToTrace);
+                CurrentNodeToTrace = ParentVerticesMap.get(CurrentNodeToTrace);
+            }
+        }
+        return ShortestPathStack;
+    }
+
     public static void main(String args[]) {
         dijkstra(test, 9);
         for (Map.Entry<Node, Integer> optimalDistance : ShortestDistanceMap.entrySet()) {
@@ -280,23 +296,37 @@ public class DijkstraAlgorithm {
             " is: " 
             + optimalDistance.getValue());
         }
+        Stack<Integer> OptimalDistanceToTarget = ReverseIteratePath(9, 10);
+        System.out.println(OptimalDistanceToTarget);
+        while (!OptimalDistanceToTarget.isEmpty()) {
+            System.out.println(OptimalDistanceToTarget.pop());
+        }
     }
 
 }
 DijkstraAlgorithm.main(null);
 ```
 
-    Shortest distance from vertex 9 to vertex 1 is: 22
-    Shortest distance from vertex 9 to vertex 11 is: 2147483646
     Shortest distance from vertex 9 to vertex 2 is: 19
-    Shortest distance from vertex 9 to vertex 9 is: 0
-    Shortest distance from vertex 9 to vertex 10 is: 59
-    Shortest distance from vertex 9 to vertex 4 is: 13
-    Shortest distance from vertex 9 to vertex 8 is: 9
     Shortest distance from vertex 9 to vertex 3 is: 20
-    Shortest distance from vertex 9 to vertex 7 is: 2
+    Shortest distance from vertex 9 to vertex 4 is: 13
     Shortest distance from vertex 9 to vertex 5 is: 12
+    Shortest distance from vertex 9 to vertex 8 is: 9
+    Shortest distance from vertex 9 to vertex 7 is: 2
+    Shortest distance from vertex 9 to vertex 10 is: 59
+    Shortest distance from vertex 9 to vertex 1 is: 22
     Shortest distance from vertex 9 to vertex 6 is: 8
+    Shortest distance from vertex 9 to vertex 11 is: 2147483646
+    Shortest distance from vertex 9 to vertex 9 is: 0
+    2
+    HELLLLLLLLLO IF THIS RUNS I THINK JAVA IS BROKEN
+    [10, 2, 4, 5, 7, 9]
+    9
+    7
+    5
+    4
+    2
+    10
 
 
 
