@@ -189,6 +189,7 @@ Note how the first and second terms (in their respective inhibitions) are invert
 **Question: What would 1(0) be? What about (1)(0)'? What about true&&false?**
   - 1(0) = 0
   - 1(0)' = 1
+  - true&&false = false
 
 ## Operation(s): OR
 
@@ -270,6 +271,7 @@ java: `!(true || false)`
 
 
 **Question: What would 1+0 be? What about !(true||false)**
+  - 1+0 = 0
   - true
 
 

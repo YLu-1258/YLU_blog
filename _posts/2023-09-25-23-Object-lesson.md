@@ -483,6 +483,11 @@ GenerateRandom.main(null);
 
     3 65 37 67 40 
 
+
+```java
+System.out
+```
+
 ## Hacks
 > Complete all popcorn hacks
 > ### [Quiz](https://docs.google.com/forms/d/e/1FAIpQLScr-jf31aGlkrNUrgu_xyyq29GOfruPDv7_YKKYyWpWqWH_9Q/viewform?usp=sf_link)
