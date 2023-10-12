@@ -263,3 +263,100 @@ Here is how the method should work:
 
 
 
+
+
+```java
+public class Animal implements Comparable<Animal> {
+    private String name;
+    private double weight;
+
+    public Animal(String n, double w) {
+        this.name = n;
+        this.weight = w;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public double getWeight() {
+        return this.weight;
+    }
+
+    @Override
+    public int compareTo(Animal animal2) {
+        int nameComparison = this.getName().compareTo(animal2.getName());
+        if (nameComparison != 0) {
+            return nameComparison;
+        }
+        if (this.getWeight() < animal2.getWeight()) {
+            return -1;
+        } else if (this.getWeight() > animal2.getWeight()) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    public static void main(String[] args) {
+        Animal animal1 = new Animal("Dog", 17.5);
+        Animal animal2 = new Animal("Dog", 17.5);
+
+        int comparisonResult = animal1.compareTo(animal2);
+
+        if (comparisonResult == 0) {
+            System.out.println("Animal1 and Animal2 are equal.");
+        } else if (comparisonResult < 0) {
+            System.out.println("Animal1 is weighs less than Animal2.");
+        } else {
+            System.out.println("Animal1 is weighs more than Animal2.");
+        }
+    }
+}
+
+Animal.main(null);
+
+```
+
+    Animal1 and Animal2 are equal.
+
+
+
+```java
+// Bonus program
+
+import java.util.Scanner;
+
+public class LeapYearChecker {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a year: ");
+        int year = scanner.nextInt();
+
+        boolean isLeapYear = checkLeapYear(year);
+
+        if (isLeapYear) {
+            System.out.println(year + " is a leap year.");
+        } else {
+            System.out.println(year + " is not a leap year.");
+        }
+
+        scanner.close();
+    }
+
+    public static boolean checkLeapYear(int year) {
+        return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+    }
+}
+
+LeapYearChecker.main(null);
+```
+
+    Enter a year: 2020 is a leap year.
+
+
+
+```java
+
+```
