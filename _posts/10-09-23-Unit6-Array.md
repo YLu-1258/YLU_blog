@@ -273,7 +273,7 @@ for (double i : doubleList) {
     }
 }
 
-System.out.println("Double MAX: " + doublemax); System.out.println("Double MIN: " + doublemin);
+##System.out.println("Double MAX: " + doublemax); System.out.println("Double MIN: " + doublemin);
 ```
 
     Int MAX: 5
@@ -285,3 +285,96 @@ System.out.println("Double MAX: " + doublemax); System.out.println("Double MIN: 
     Double MAX: 9.1
     Double MIN: 2.8
 
+
+## Hacks
+Given an input of N integers, find A, the maximum, B, the minimum, and C the median.
+
+Print the following in this order: A + B + C A - B - C (A + B) * C
+
+Sample data:
+
+INPUT:
+5
+1 2 3 4 5
+
+OUTPUT:
+9 1 18
+
+INPUT:
+9
+2 4 6 8 10 10 12 14 16
+
+OUTPUT:
+28 6 180
+
+
+```java
+import java.util.Arrays;
+
+public class Main {
+    public static void hack1(int N, int[] nums) {
+        Arrays.sort(nums);
+        int min = nums[0];
+        int max = nums[N - 1];
+        int median;
+        if (N % 2 == 0) {
+            median = (nums[N / 2 - 1] + nums[N / 2]) / 2;
+        } else {
+            median = nums[N / 2];
+        }
+        System.out.print("Max: "+ max +" Median: " + median + " Min: " + min + "\n");
+        System.out.print((min + max + median) + " " + (max - min - median) + " " + (max + min) * median + "\n");
+    }
+
+    public static void main(String[] args) {
+
+        // Test the hack
+        int[] nums1 = {1, 2, 3, 4, 5};
+        hack1(nums1.length, nums1);
+        
+        int[] nums2 = {2, 4, 6, 8, 10, 10, 12, 14, 16};
+        hack1(nums2.length, nums2);
+    }
+}
+
+Main.main(null);
+```
+
+    Max: 5 Median: 3 Min: 1
+    9 1 18
+    Max: 16 Median: 10 Min: 2
+    28 4 180
+
+
+
+```java
+// Find the N-th fibonacci num
+public class Main {
+    public static int hackFibo(int N) {
+        int[] fibo = new int[N];
+        fibo[0] = 1;
+        fibo[1] = 1;
+        for (int i = 2; i < N; i++) {
+            fibo[i] = fibo[i-1] + fibo[i-2];
+        }
+        return fibo[N-1];
+    }
+    public static void main(String[] args) {
+
+        // Test the hack
+        System.out.println(hackFibo(7));
+        System.out.println(hackFibo(20));
+    }
+}
+
+Main.main(null);
+```
+
+    13
+    6765
+
+
+
+```java
+
+```

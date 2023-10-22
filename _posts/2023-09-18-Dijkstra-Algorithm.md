@@ -28,6 +28,7 @@ Additionally, our `WeightedGraph()` object should support opperations to create 
 
 ```java
 import java.util.HashMap;
+import java.util.Map;
 import java.util.ArrayList;
 import java.util.Stack;
 ```
@@ -91,7 +92,7 @@ public class BiDirectionalWeightedGraph {
         this.Graph = new ArrayList<Node>();
     }
     
-    public ArrayList<Node> RetrieveArrayofVertices(){
+    public ArrayList<Node> retrieveGraph(){
         return this.Graph;
     }
 
@@ -143,6 +144,21 @@ public class BiDirectionalWeightedGraph {
         SourceVerticeObj.removeEdgeFromVertex(ProvidedDestinationVertice);   
         DestinationVerticeObj.removeEdgeFromVertex(ProvidedSourceVertice);       
     }
+
+    public int[][] getAdjacencyList() {
+        int adjacencyList[][] = new int[Graph.size()+1][Graph.size()+1];
+        for (Node vertice : Graph) {
+            int source = vertice.getIndex();
+            adjacencyList[0][source]=source;
+            adjacencyList[source][0]=source;
+            for (Map.Entry<Integer, Integer> entry : vertice.getEdges().entrySet()) {
+                int destination = entry.getKey();
+                int weight = entry.getValue();
+                adjacencyList[source][destination] = weight;
+            }
+        }
+        return adjacencyList;
+    }
 }
 
 BiDirectionalWeightedGraph test = new BiDirectionalWeightedGraph();
@@ -193,9 +209,18 @@ test.addEdgeToGraph(5, 7, 10);
 test.addEdgeToGraph(7, 9, 2);
 
 
-ArrayList<Node> sampleList = test.RetrieveArrayofVertices();
+ArrayList<Node> sampleList = test.retrieveGraph();
 for (Node node: sampleList) {
     System.out.println(node.getIndex() + " : " + node.getEdges());
+}
+
+System.out.println(sampleList.size());
+int sampleAdjacencyList[][] = test.getAdjacencyList();
+for (int i = 0; i < sampleAdjacencyList.length; i++ ) {
+    for (int j = 0; j < sampleAdjacencyList.length; j++ ) {
+        System.out.print(sampleAdjacencyList[i][j] + " ");
+    }
+    System.out.println();
 }
 ```
 
@@ -210,6 +235,19 @@ for (Node node: sampleList) {
     9 : {7=2, 8=9, 10=1000}
     10 : {1=50, 2=40, 8=20000, 9=1000}
     11 : {}
+    11
+    0 1 2 3 4 5 6 7 8 9 10 11 
+    1 0 3 6 0 0 0 0 0 0 50 0 
+    2 3 0 2 6 0 0 0 0 0 40 0 
+    3 6 2 0 7 8 0 0 0 0 0 0 
+    4 0 6 7 0 1 8 0 0 0 0 0 
+    5 0 0 8 1 0 4 10 0 0 0 0 
+    6 0 0 0 8 4 0 6 10 0 0 0 
+    7 0 0 0 0 10 6 0 8 2 0 0 
+    8 0 0 0 0 0 10 8 0 9 20000 0 
+    9 0 0 0 0 0 0 2 9 0 1000 0 
+    10 50 40 0 0 0 0 0 20000 1000 0 0 
+    11 0 0 0 0 0 0 0 0 0 0 0 
 
 
 ## Dijkstra methods
@@ -234,7 +272,7 @@ public class DijkstraAlgorithm {
         NodeArrayList = new ArrayList<Node>();
         Node SourceVertextNodeObject = InputGraph.getVerticeFromLabel(SourceVertexLabel);
         Node CurrentNodeToTraverse;
-        for (Node vertice : InputGraph.RetrieveArrayofVertices()) {
+        for (Node vertice : InputGraph.retrieveGraph()) {
             ShortestDistanceMap.put(vertice, inf-1);
             ParentVerticesMap.put(vertice.getIndex(), null);
             NodeArrayList.add(vertice);
