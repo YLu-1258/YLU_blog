@@ -146,18 +146,32 @@ public class BiDirectionalWeightedGraph {
     }
 
     public int[][] getAdjacencyList() {
-        int adjacencyList[][] = new int[Graph.size()+1][Graph.size()+1];
+        int adjacencyList[][] = new int[Graph.size()][Graph.size()];
         for (Node vertice : Graph) {
             int source = vertice.getIndex();
-            adjacencyList[0][source]=source;
-            adjacencyList[source][0]=source;
             for (Map.Entry<Integer, Integer> entry : vertice.getEdges().entrySet()) {
                 int destination = entry.getKey();
                 int weight = entry.getValue();
-                adjacencyList[source][destination] = weight;
+                adjacencyList[source-1][destination-1] = weight;
             }
         }
         return adjacencyList;
+    }
+
+    public void setGraphFromAdjacencyList(int[][] adjacencyList){
+        this.Graph = new ArrayList<Node>();         // Reset Graph to blank graph
+        for (int index = 1; index <=adjacencyList.length; index++) {         // Initialize the new nodes 
+            Node tempVertice = new Node(index);
+            addVertice(tempVertice);
+        }
+        for (int i = 0; i<adjacencyList.length; i++) {
+            for (int j = 0; j<adjacencyList[0].length; j++) {
+                int source = i+1;                   // source is current index + 1
+                int destination = j+1;              // destination is current index + 1
+                int weight = adjacencyList[i][j];    // weight is current element of 2D array
+                addEdgeToGraph(source, destination, weight);        // Add weighted edge
+            } 
+        }
     }
 }
 
@@ -224,30 +238,14 @@ for (int i = 0; i < sampleAdjacencyList.length; i++ ) {
 }
 ```
 
-    1 : {2=3, 3=6, 10=50}
-    2 : {1=3, 3=2, 4=6, 10=40}
-    3 : {1=6, 2=2, 4=7, 5=8}
-    4 : {2=6, 3=7, 5=1, 6=8}
-    5 : {3=8, 4=1, 6=4, 7=10}
-    6 : {4=8, 5=4, 7=6, 8=10}
-    7 : {5=10, 6=6, 8=8, 9=2}
-    8 : {6=10, 7=8, 9=9, 10=20000}
-    9 : {7=2, 8=9, 10=1000}
-    10 : {1=50, 2=40, 8=20000, 9=1000}
-    11 : {}
-    11
-    0 1 2 3 4 5 6 7 8 9 10 11 
-    1 0 3 6 0 0 0 0 0 0 50 0 
-    2 3 0 2 6 0 0 0 0 0 40 0 
-    3 6 2 0 7 8 0 0 0 0 0 0 
-    4 0 6 7 0 1 8 0 0 0 0 0 
-    5 0 0 8 1 0 4 10 0 0 0 0 
-    6 0 0 0 8 4 0 6 10 0 0 0 
-    7 0 0 0 0 10 6 0 8 2 0 0 
-    8 0 0 0 0 0 10 8 0 9 20000 0 
-    9 0 0 0 0 0 0 2 9 0 1000 0 
-    10 50 40 0 0 0 0 0 20000 1000 0 0 
-    11 0 0 0 0 0 0 0 0 0 0 0 
+
+    |           for (int index = 1; index <=adjacencyList.lenth; index++) {         // Initialize the new nodes 
+
+    cannot find symbol
+
+      symbol:   variable lenth
+
+    
 
 
 ## Dijkstra methods

@@ -24,13 +24,14 @@ myNumber = new Double(6.1);             // Compile error occurs, incompatible ty
 System.out.println(myNumber);           // This line is not reached
 ```  
 
-But what if we want want a reference variable to store objects
+But what if we want want a reference variable to store objects of other classes? We get an error
 
 
 ```java
 Integer myNumber = new Integer(6);
 System.out.println(myNumber);
 myNumber = new Double(6.1);
+System.out.println(myNumber);
 ```
 
     6
@@ -42,6 +43,20 @@ myNumber = new Double(6.1);
     incompatible types: java.lang.Double cannot be converted to java.lang.Integer
 
     
+
+
+However, the `Integer` and `Double` classes are actually subclasses of the `Number` class.
+
+
+```java
+Number myNumber = new Integer(6);
+System.out.println(myNumber);
+myNumber = new Double(6.1);
+System.out.println(myNumber);
+```
+
+    6
+    6.1
 
 
 
