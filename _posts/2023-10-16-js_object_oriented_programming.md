@@ -4,7 +4,7 @@ layout: post
 title: Javascript Object Oriented Programming
 description: Tech talk going over object oriented progamming in javascript
 author: alex
-type: ccc
+type: hacks
 week: 11
 ---
 

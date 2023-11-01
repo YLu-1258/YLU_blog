@@ -6,7 +6,7 @@ comments: True
 categories: ['AP Prep', 'tutorials']
 date: 2023-10-05 00:00:00 -0800
 tags: ['notebooks', 'objects', 'oop']
-week: 4
+week: 6
 render_with_liquid: False
 type: hacks
 ---
