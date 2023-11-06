@@ -38,6 +38,8 @@ import java.util.Stack;
 public class Node {
     private int VerticeIndex;
     private HashMap<Integer, Integer> Edges;
+    private int CoordX;
+    private int CoordY;
 
     Node (int ProvidedIndexFromFrontend) {
         this.VerticeIndex = ProvidedIndexFromFrontend; 
