@@ -7,7 +7,7 @@ categories: ['Tri1', 'Reflection']
 date: 2023-11-02 00:00:00 -0800
 week: 11
 render_with_liquid: False
-type: tangibles
+type: plans
 ---
 ## Group Contribution
 Overall, I had a pretty consistent habit of commiting as Scrum Master. Because of my role, I had a more hollistic view of the project than the specialized roles (FE and BE developers), and I was effective at helping both ends with critical bugs and features to implement. I was also responsible for building the main algorithm that powered our demonstration of dijkstra's algorithm, which I had to research and program on my own. As for the major set up and baseline code, I left to the other members to take care of. One issue that I face however, is hording up edits before commiting. I have a bad habit of making sure that everything worked before commiting, which resutled in bulkier, but less frequent commits  
