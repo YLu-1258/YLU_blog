@@ -75,7 +75,11 @@ On the positive side, our group was especially effective at communicating with e
 However, improvements can be made with our focus and agile methodology. Some group members were a little bit off focus or unattentative during coding sessions and presentation, which may have contributed to a more negative experience for the consumers of our product. Additionally, we were a little bit rushed towards the end for our project, because we had to switch the frontend implementations 2 times. These obstacles could've been avoided in the feature weel phase if we had a more solid plan for tackling how our project operated. This is definitely something to improve for trimester 2.
 
 ## Individual grades:
+Here is the reflection to my collegeboard MCQ: [link](https://ylu-1258.github.io/YLU_blog/posts/Collegeboard-MCQ-Practice/)
 
+Here is the link to my lab notebook: [link](https://ylu-1258.github.io/YLU_blog/lab-notebook/)
+
+Here is the link to my scores for the past few weeks of student lessons: [link]
 
 ## Final thoughts
 Overall, I believe that this trimester was an especially rewarding experience. Not only did I gain experience in working with higher level algorithms that aren't covered by the CollegeBoard curriculum, I have also been inspired by other N@TM projects for new ideas for projects whether it be in the classroom or outside. It was also a good lesson learned that most frameworks don't work well with each other, and careful planning is paramount for a successful and cohesive project.
