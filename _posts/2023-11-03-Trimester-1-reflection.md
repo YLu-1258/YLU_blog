@@ -17,10 +17,6 @@ Below is the picture for my contributions on the backend project:
 Below is the picture for my contributions on the frontend project, keeping in mind that  we had multiple iterations of the frontend, which was due to the fact that we tried multiple frontend frameworks (svelt, vue.js, then to fastpages). There are more commits I had on the other repos, but they didn't contribute to our project at the end, so I didn't incorporate them.  
 ![Backend Commit Trend](/assets/img/tri1/fe_commits.png)   
 
-
-## Code Reflection/ Knolwedge gained
-Overall, I feel like the project this trimester has forced me to go beyond the usual algorithms I write to research, design, and formulate a unique algorithm that people (in this class) haven't seen before. Being in CSA, I was able to successfully incorporate aspects of Object-Oriented Programming into my backend and frontend code to make the  project work efficient and modularily. Additionally, I was able to make use of my knowledge in applied/discrete math to actually understand the proofs for the Dijkstra algorithm, when it came to proving its running time and space complexity. Doing so made designing more complex objects, such as the weighted graph, or the controllers for the frontend easier to manage, and more versatile as a result.  
-
 ### Dijkstra's algorithm
 As the one who proposed the project, I was naturally also responsible for implementing the algorithm. The implementation was largely seperated into two different portions:  
  - The Data Structures  
@@ -79,7 +75,15 @@ Here is the reflection to my collegeboard MCQ: [link](https://ylu-1258.github.io
 
 Here is the link to my lab notebook: [link](https://ylu-1258.github.io/YLU_blog/lab-notebook/)
 
-Here is the link to my scores for the past few weeks of student lessons: [link]
+Here is the link to my scores for the past few weeks of student lessons: [link](https://github.com/YLu-1258/YLU_blog/issues/6)
+
+
+## Reflection as Scrum Master
+As Scrum Master, this was definitely one of the more functional teams that I've had in CS before. Everyone knew their corresponding tasks and was able to successfully complete it before the deadline. As Scrum Master, I was also on top of creating issues and ensuring that the project was on track, as evident by our scrum board:  
+![Scrumboard](/assets/img/tri1/scrumboard.png)  
+However, one thing that could be improved on for our team, is to focus more on the features and plan well during feature week. We faced many difficulties in our project because of poor planning that caused us to restart our frontend many times. It was due to this that we had to scrap one of our project ideas.
+## Code Reflection/ Knolwedge gained
+Overall, I feel like the project this trimester has forced me to go beyond the usual algorithms I write to research, design, and formulate a unique algorithm that people (in this class) haven't seen before. Being in CSA, I was able to successfully incorporate aspects of Object-Oriented Programming into my backend and frontend code to make the  project work efficient and modularily. Additionally, I was able to make use of my knowledge in applied/discrete math to actually understand the proofs for the Dijkstra algorithm, when it came to proving its running time and space complexity. Doing so made designing more complex objects, such as the weighted graph, or the controllers for the frontend easier to manage, and more versatile as a result.  
 
 ## Final thoughts
-Overall, I believe that this trimester was an especially rewarding experience. Not only did I gain experience in working with higher level algorithms that aren't covered by the CollegeBoard curriculum, I have also been inspired by other N@TM projects for new ideas for projects whether it be in the classroom or outside. It was also a good lesson learned that most frameworks don't work well with each other, and careful planning is paramount for a successful and cohesive project.
+Overall, I believe that this trimester was an especially rewarding experience. Not only did I gain experience in working with higher level algorithms that aren't covered by the CollegeBoard curriculum, I have also been inspired by other N@TM projects for new ideas for projects whether it be in the classroom or outside. In particular, I want to see if I could pursue an AI project next trimester by training my own AI model in the backend with Java and linking it up with Spring Boot to display data. It would be cool if I could create a stock predictor or something similar to that idea. Learning Java this trimester also helped to reinforce the OOP knowledge that I have, and laid the groundwork for me to imrpove at the collegeboard exams. It was also a good lesson learned that most frameworks don't work well with each other, and careful planning is paramount for a successful and cohesive project.
