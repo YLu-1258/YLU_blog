@@ -57,8 +57,8 @@ Looking back, I could've cleaned up the code if I had used lombok to generate th
 ### Frontend Work.
 On the frontend, I mainly worked with david at getting our edit and view controllers for placing down nodes, and viewing the paths. To do this, we used inheritance to create a base controller class with joint.js methods, and then created subclasses from them.  
 ![Controller Parent](/assets/img/tri1/controller.png)  
-![View Controller](/assets/img/tri1/view-controller.png)  
-![Edit Controller](/assets/img/tri1/edit-controller.png)  
+![View Controller](/assets/img/tri1/view_controller.png)  
+![Edit Controller](/assets/img/tri1/edit_controller.png)  
 I also used the adjacency matrix idea to send the graph data from FE to BE:  
 ![Adjancency Matrix](/assets/img/tri1/adj_matrix.png)  
 
