@@ -15,7 +15,7 @@ Overall, I had a pretty consistent habit of commiting as Scrum Master. Because o
 Below is the picture for my contributions on the backend project:
 ![Backend Commit Trend](/assets/img/tri1/be_commits.png)   
 Below is the picture for my contributions on the frontend project, keeping in mind that  we had multiple iterations of the frontend, which was due to the fact that we tried multiple frontend frameworks (svelt, vue.js, then to fastpages). There are more commits I had on the other repos, but they didn't contribute to our project at the end, so I didn't incorporate them.  
-![Backend Commit Trend](/assets/img/tri1/fe_commits.png)   
+![Frontend Commit Trend](/assets/img/tri1/fe_commits.png)   
 
 ### Dijkstra's algorithm
 As the one who proposed the project, I was naturally also responsible for implementing the algorithm. The implementation was largely seperated into two different portions:  
