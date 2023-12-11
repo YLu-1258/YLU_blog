@@ -78,19 +78,68 @@ aside[role="complementary"]
 
 In the design phase of any project, maintaining uniformity is extremely important for creating a polished look. SASS allows for this by allowing the use of variables to store and reuse colors, fonts, and other design elements.
 
-This makes it so that there is a ________ theme applied throughout the entire project. SASS allows for visual cohesion.
+This makes it so that there is a **consistent** theme applied throughout the entire project. SASS allows for visual cohesion.
 
 <h2>Visual Concept as a Blueprint</h2>
 
 Before going into the functional code, it is very important to create a visual concept or design mockup. This is a model for the project, which gives a clear visual representation for the final product. It allows for a scrum team to align on the aesthetics and overall design direction.
 
-This also allows for feedback and _______. People can make adjustments to the visual elements without complexity of functional code, and it makes sure that all requirements are met. 
+This also allows for feedback and **interation**. People can make adjustments to the visual elements without complexity of functional code, and it makes sure that all requirements are met. 
 
-These visual concepts also play a role in planning the _______ design. The team members can visualize how layouts and styles are adapted for different ________ _________, so that all users can have a great visual experience across all types of devices. 
+These visual concepts also play a role in planning the **responsive** design. The team members can visualize how layouts and styles are adapted for different **screen** **resolution**, so that all users can have a great visual experience across all types of devices. 
 
 <h1>Hacks</h1>
 
 **Explore SASS documentation to discover any additional features not covered in the lesson and implement one or more of these features in your GH Pages project. Write a couple sentences explaining the feature and demonstrate it.**
+
+# Modules
+
+When using SASS for styling, we can opt to split up a larger SASS file into various smaller SASS files called "modules" in order to achieve better organization of our SASS.  
+
+To create these modules, we'd first create a `.scss` file that begins with an underscore (_). This denotes a module SASS file. If we want to use the module as a part of a larger SASS file, then we can use teh `@use` directive to incorporate it.  
+
+For example:
+
+```
+// _container-item.scss
+$font-size: 15px;
+$primary-color: #333;
+
+.container-item {
+  font-size: $font-size;
+  color: $primary-color;
+  text-align: center;
+}
+```
+```
+// container.scss
+@use 'container-item';
+
+.container {
+  width: 100%;
+  height: 80%;
+  margin-left: 10%;
+}
+```
+
+The resulting CSS would look like this:  
+
+```
+// container.css
+.container-item {
+  font-size: 15px;
+  color: #333;
+  text-align: center;
+}
+
+.container {
+  width: 100%;
+  height: 80%;
+  margin-left: 10%;
+}
+```
+
+The use of SASS modules enables us to reference any mixins or functions that we have declared in smaller file, in a larger file. It serves to break up our code to improve readability and organization of different functions.
 
 ## Partials and Modular Styling with SASS
 
@@ -98,7 +147,7 @@ These visual concepts also play a role in planning the _______ design. The team 
 
 SASS partials are separate files containing any specific style or component. They allow for better organization and modularization of styles. They play a very important role in organizing and modularizing styles. 
 
-Partials are named with a leading underscore (e.g., `_variables.sass`) to indicate that they are meant to be ______ into another stylesheet.
+Partials are named with a leading underscore (e.g., `_variables.sass`) to indicate that they are meant to be **imported** into another stylesheet.
 
 ### Benefits of Using Partials:
 
@@ -111,7 +160,7 @@ Partials are named with a leading underscore (e.g., `_variables.sass`) to indica
 
 3. **Readability and Collaboration:**
    - Smaller files enhance code readability. Developers can quickly locate and understand specific styles.
-   - Supports ________ development, allowing different team members to work on different partials simultaneously.
+   - Supports **concurrent** development, allowing different team members to work on different partials simultaneously.
 
 ### Importing Partials into a Main SASS File:
 
@@ -143,7 +192,7 @@ To use SASS partials, import them into a main SCSS file using the `@import` dire
 
 ### Introduction to Variables:
 
-SASS variables provide a way to store information for later use in a stylesheet. They offer several advantages, including enhanced maintainability and consistency, by allowing you to define values in ______ location.
+SASS variables provide a way to store information for later use in a stylesheet. They offer several advantages, including enhanced maintainability and consistency, by allowing you to define values in **one** location.
 
 
 
@@ -304,10 +353,10 @@ text-overflow: hidden;
 Flexbox and Grid are two powerful layout systems in CSS that allow for responsive design and complex layouts with less effort.
 
 ### Flexbox
-- **Purpose**: Designed for ____-dimensional layouts (either ____ or ____).
+- **Purpose**: Designed for one-dimensional layouts (either rows or columns).
 
 ### Grid
-- **Purpose**: Designed for ____ -dimensional layouts ( ____ and ____ together).
+- **Purpose**: Designed for two-dimensional layouts ( rows and columns together).
 
 ## Simplifying Responsive Layouts with SASS
 
@@ -424,6 +473,41 @@ $padding: 10px
 ## Hacks
 
 Create a grid layout that automatically adjusts the number of columns based on the screen size, using SASS variables and functions.
+
+
+```python
+$column-gap: 20px;
+$min-column-width: 200px;
+$max-columns: 4;
+
+@function calculate-columns($width) {
+  @return max(1, min($max-columns, floor(($width + $column-gap) / ($min-column-width + $column-gap))));
+}
+
+.grid-container {
+  display: grid;
+  grid-gap: $column-gap;
+  justify-content: center;
+  
+  @media screen and (max-width: $min-column-width * $max-columns) {
+    grid-template-columns: repeat(auto-fit, minmax($min-column-width, 1fr));
+  }
+
+  @media screen and (min-width: $min-column-width * $max-columns + $column-gap) {
+    grid-template-columns: repeat($max-columns, minmax($min-column-width, 1fr));
+  }
+  
+
+// I have no idea if this works but it should
+.grid-item {
+  width: 100%;
+  height: 100px;
+  background-color: lightgray;
+  
+}
+
+
+```
 
 # Scripting in SASS
 
@@ -587,15 +671,6 @@ $screen-size: 800px;
 }
 ```
 
-
-# Hacks
-
-Define a custom SASS function that uses a for loop in order to slightly decrease the saturation and increase the brightness of a color of your choosing and fill in those increasingly more white colors into a 3x3 array of equal height and width.
-
-### Example Image
-
-![pixil-frame-0 (1)](https://github.com/Ant11234/student/assets/40652645/509214d6-bf1a-40f7-9028-cfd4b9f212da)
-
 # Extending & Inheritance
 
 
@@ -705,8 +780,49 @@ In this example, the @debug statement will print a message to the console during
 ### Popcorn Hack 1:
 Try changing the primary color to an invalid value (e.g., 'red') and observe the @error message. Then, correct it to a valid color.
 
+
+```python
+// SCSS Syntax
+$primary-color: #3498db; // Change this to an invalid color, e.g., 'red'
+
+@mixin validate-color($color) {
+  @if not str-slice($primary-color, 1, 1) == "#" {
+    @error "Invalid color provided: #{$color}. Value does not seem to be hex";
+  }
+}
+
+.element {
+  background-color: $primary-color;
+  @include validate-color($primary-color);
+}
+```
+
+%%html
+<div style="background-color: #3498db; padding: 20px;">
+  <p style="color: #fff;">This is an example element with a primary color background.</p>
+</div>
+
 ### Popcorn Hack 2:
 Modify the base font size and observe the @debug message. Try different font sizes and see how it affects the calculated line height.
+
+
+```python
+// SCSS Syntax
+$font-size-base: 32px; // Different font sizes
+
+@function calculate-line-height($font-size) {
+  @debug "Calculating line height for font size: #{$font-size}px";
+
+  $line-height-ratio: 1.5; 
+  $line-height: $font-size * $line-height-ratio;
+
+  @return $line-height;
+}
+body {
+  font-size: $font-size-base;
+  line-height: calculate-line-height($font-size-base);
+}
+```
 
 # Hacks
 
@@ -715,6 +831,37 @@ Define a custom SASS function that uses a for loop in order to slightly decrease
 ### Example Image
 
 ![pixil-frame-0 (1)](https://github.com/Ant11234/student/assets/40652645/509214d6-bf1a-40f7-9028-cfd4b9f212da)
+
+
+```python
+@function color-three-by-three($color, $saturation, $lightness) {
+  $hsl: hsl($color); // Convert color to HSL
+  
+  $hsl: adjust-hue($hsl, $saturation); // Adjust saturation
+  $hsl: lightness($hsl, $lightness); // Adjust brightness
+  
+  // Return the modified color
+  $rgb: rgb($hsl);
+  @return $rgb;
+}
+
+// In theory this should work but I have no idea what I'm doing LMAOOOOOOOO
+@for $i from 1 through 3 {
+  @for $j from 1 through 3 {
+    $saturation: -($i * 5); // Decrease saturation
+    $lightness: $j * 10;    // Increase brightness
+    
+    $modified-color: color-three-by-three(turquoise, $saturation, $lightness);
+  
+    .cell-#{$i}-#{$j} {
+      background-color: $modified-color;
+      width: 33%;
+      height: 33%;
+      display: inline-block;
+    }
+  }
+}
+```
 
 # Mixins
 
