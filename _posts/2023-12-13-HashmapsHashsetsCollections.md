@@ -731,9 +731,9 @@ You can view the way this data is structured in the `person` sqlite.db table.
     - Using past group project materials is valid for this homework as long as the expectations are met.
 
 Main Customers Table:
-![image.png](image.png)  
+![Main Customers Table](../../assets/img/SQL_hacks/image.png)  
 Many-to-Many Memberships Table:
-![image-2.png](image-2.png)
+![Many-to-Many](../../assets/img/SQL_hacks/image-1.png)  
 ## As you can see, both Many to Many and JSONB were implemented, now give me the points
 
 ### Ideas for 1.0/1.0
