@@ -1,7 +1,4 @@
 ---
-toc: True
-comments: True
-layout: notebook
 title: HashMaps, HashSets, Collections, SQL Student Lessons
 description: by Tirth T, Haseeb B, Sreeja G, Ekam K, Drew R, Adan R
 week: 15
@@ -731,9 +728,10 @@ You can view the way this data is structured in the `person` sqlite.db table.
     - Using past group project materials is valid for this homework as long as the expectations are met.
 
 Main Customers Table:
-![Main Customers Table](../assets/img/SQL_hacks/image.png)  
+<img src="/assets/img/SQL_hacks/image.png" alt="customers table">
+  
 Many-to-Many Memberships Table:
-![Many-to-Many](../assets/img/SQL_hacks/image-1.png)  
+<img src="/assets/img/SQL_hacks/image-1.png" alt="many-to-many">
 ## As you can see, both Many to Many and JSONB were implemented, now give me the points
 
 ### Ideas for 1.0/1.0
