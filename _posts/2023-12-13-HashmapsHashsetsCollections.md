@@ -734,6 +734,7 @@ Main Customers Table:
 ![image.png](image.png)  
 Many-to-Many Memberships Table:
 ![image-2.png](image-2.png)
+## As you can see, both Many to Many and JSONB were implemented, now give me the points
 
 ### Ideas for 1.0/1.0
 
