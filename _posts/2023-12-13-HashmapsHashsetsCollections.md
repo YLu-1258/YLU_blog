@@ -1,8 +1,6 @@
 ---
-title: HashMaps, HashSets, Collections, SQL Student Lessons
-description: by Tirth T, Haseeb B, Sreeja G, Ekam K, Drew R, Adan R
-week: 15
-type: hacks
+title: SQL Hacks
+description: hacks for SQL
 ---
 
 ## Collections
