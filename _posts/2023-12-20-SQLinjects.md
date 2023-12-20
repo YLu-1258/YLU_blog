@@ -145,7 +145,7 @@ A common, and simple strategy to use is to place restrictions on what the user c
 Often in the backend, we may construct SQL Queries using string concatenation. ***DON'T DO THIS.*** While it is convinient, using parameterized statements are much more secure. considering the following two examples:
 
 
-```python
+```java
 import java.sql.*
 // The user we want to find.
 String email = "user@email.com";
@@ -167,7 +167,7 @@ while (results.next()) {
 ```
 
 
-```python
+```java
 import java.sql.*
 // Connect to the database.
 Connection conn = DriverManager.getConnection(URL, USER, PASS);
