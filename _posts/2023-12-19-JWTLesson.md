@@ -459,10 +459,28 @@ Additional Security Considerations
 - Regular Key Rotation: rotate keys regularly for security and to limit the impact of compromised key
 
 ## Hacks
-1. Implementation 
+### Implementation 
 - Implement a simple authentication system using JWT with Java. Show how JWT works with postman. Get the request to be authorized
 
-2. MC Knowledge test (5) 
+#### My work
+To begin with, I created a new table of users that mocked a students database, including phone numbers and student IDs.
+![Jwt Flowchart](/assets/img/jwt/student_table.png)
+
+I then made some minor adjustments to the JWT implementation to have it work properly for me, and generated the following cookie for me to use for the "Eris29" user.
+```
+jwt=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJFcmlzMjkiLCJlbWFpbCI6ImVyaXMyOUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IkVyaXMiLCJpYXQiOjE1MTYyMzkwMjJ9.LY-5O_IBjWGCFv1drL3gJHeJNOaXUj6GAkbdSSKmvsk; Path=/; Max-Age=3600; Expires=Mon, 08 Jan 2024 04:19:38 GMT; Secure; HttpOnly; SameSite=None; Secure
+```
+When put into jwt.io, this is what I got:
+![Jwt Flowchart](/assets/img/jwt/jwt_io.png)
+Thus, this verifies that my JWTs were being properly generated.
+
+When I then used postman to access user-authenticated information, I was pleased to see that I could authenticate into said user, and only obtain details for that user alone, indicating the my JWT has worked:
+![Jwt Flowchart](/assets/img/jwt/postman.png)
+
+#### Extra points
+I don't know if you noticed, but I did add additional custom claims to my jwt, which you could see as the password and email field respectively in the above JWT.io screenshot. This would add an additional layer of security, as my backend could now verify email and password in addition to the username to make sure that the user is being securely authenticated and seeing data only they should see.
+
+### MC Knowledge test (5) 
     - Which part of the JWT contains the actual data (claims)? 
         - Header
         - <mark>Payload</mark>
