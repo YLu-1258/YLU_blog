@@ -470,8 +470,8 @@ I then made some minor adjustments to the JWT implementation to have it work pro
 ```
 jwt=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJFcmlzMjkiLCJlbWFpbCI6ImVyaXMyOUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IkVyaXMiLCJpYXQiOjE1MTYyMzkwMjJ9.LY-5O_IBjWGCFv1drL3gJHeJNOaXUj6GAkbdSSKmvsk; Path=/; Max-Age=3600; Expires=Mon, 08 Jan 2024 04:19:38 GMT; Secure; HttpOnly; SameSite=None; Secure
 ```
-When put into jwt.io, this is what I got:
-![Jwt Flowchart](/assets/img/jwt/jwt_io.png)
+When put into jwt.io, this is what I got:  
+![Jwt Flowchart](/assets/img/jwt/jwtio.png)  
 Thus, this verifies that my JWTs were being properly generated.
 
 When I then used postman to access user-authenticated information, I was pleased to see that I could authenticate into said user, and only obtain details for that user alone, indicating the my JWT has worked:
@@ -481,28 +481,28 @@ When I then used postman to access user-authenticated information, I was pleased
 I don't know if you noticed, but I did add additional custom claims to my jwt, which you could see as the password and email field respectively in the above JWT.io screenshot. This would add an additional layer of security, as my backend could now verify email and password in addition to the username to make sure that the user is being securely authenticated and seeing data only they should see.
 
 ### MC Knowledge test (5) 
-    - Which part of the JWT contains the actual data (claims)? 
-        - Header
-        - <mark>Payload</mark>
-        - Signature
-        - Encryption
-    - What is the purpose of the header in a JWT?
-        - It contains the signature for the JWT.
-        - <mark>It identifies the algorithm used to generate the signature.</mark> 
-        - It holds the encrypted data. 
-        - It contains the user's information.
-    - How are the parts of a JWT (header, payload, and signature) separated?
-        - Comma
-        - <mark>Period</mark>
-        - Colon
-        - Semicolon
-    - Which algorithm is commonly used for JWT signatures?
-        - <mark>HMAC</mark> (Hash-based Message Authentication Code)
-        - RSA (Rivest-Shamir-Adleman)
-        - AES (Advanced Encryption Standard)
-        - MD5 (Message Digest Algorithm 5)
-    - How are JWTs commonly transmitted?
-        - Only via HTTP headers
-        - Only as query parameters in the URL
-        - In the request body as JSON
-        - <mark>Any of the above, depending on the application</mark>
+- Which part of the JWT contains the actual data (claims)? 
+    - Header
+    - <mark>Payload</mark>
+    - Signature
+    - Encryption
+- What is the purpose of the header in a JWT?
+    - It contains the signature for the JWT.
+    - <mark>It identifies the algorithm used to generate the signature.</mark> 
+    - It holds the encrypted data. 
+    - It contains the user's information.
+- How are the parts of a JWT (header, payload, and signature) separated?
+    - Comma
+    - <mark>Period</mark>
+    - Colon
+    - Semicolon
+- Which algorithm is commonly used for JWT signatures?
+    - <mark>HMAC</mark> (Hash-based Message Authentication Code)
+    - RSA (Rivest-Shamir-Adleman)
+    - AES (Advanced Encryption Standard)
+    - MD5 (Message Digest Algorithm 5)
+- How are JWTs commonly transmitted?
+    - Only via HTTP headers
+    - Only as query parameters in the URL
+    - In the request body as JSON
+    - <mark>Any of the above, depending on the application</mark>
