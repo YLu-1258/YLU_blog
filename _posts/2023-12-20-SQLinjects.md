@@ -1,6 +1,10 @@
 ---
+toc: True
+comments: False
+layout: post
 title: SQL Injects
 week: 17
+type: hacks
 ---
 
 ## What is a SQL Inject

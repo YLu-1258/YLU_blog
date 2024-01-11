@@ -1,7 +1,11 @@
 ---
+toc: True
+comments: False
+layout: post
 title: SQL Hacks
 description: hacks for SQL
 week: 16
+type: hacks
 ---
 
 ## Collections

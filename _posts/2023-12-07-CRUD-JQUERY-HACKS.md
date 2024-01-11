@@ -1,7 +1,11 @@
 ---
+toc: True
+comments: False
+layout: post
 title: JQUERY & CRUD HACKS
 description: hacks for CRUD with JQUERY
 week: 15
+type: hacks
 ---
 
 # Directions

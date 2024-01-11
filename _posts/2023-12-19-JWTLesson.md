@@ -1,6 +1,10 @@
 ---
+toc: True
+comments: False
+layout: post
 title: JWT - Java, Security Lesson
 week: 17
+type: hacks
 ---
 
 ## What is JWT
