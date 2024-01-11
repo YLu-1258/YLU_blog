@@ -1,6 +1,7 @@
 ---
 title: SQL Hacks
 description: hacks for SQL
+week: 16
 ---
 
 ## Collections
