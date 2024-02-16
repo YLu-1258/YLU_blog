@@ -30,4 +30,4 @@ For the most part, I was presenting our project. However, I did have this pictur
 One of the groups (I think Emma's), worked on a project where they planned to introduce their users to different cyber exploits and system vulnerabilities. As I have background in this field through CyberPatriot, I found their project very interesting because it explores the other side of software engineering, where we have to be judicious with our programming to ensure that our systems are secure.
 
 ### Things outside of CS that impressed me:
-One of the other groups, I think it was Rachit's group, who created a coding-education game that was going to be powered by AI. However, the group also created many art assests of their own that were consistent with the theme of the project. I found it a cool way to incorporate more aspects of other disciplines into CS>
+One of the other groups, I think it was Rachit's group, who created a coding-education game that was going to be powered by AI. However, the group also created many art assests of their own that were consistent with the theme of the project. I found it a cool way to incorporate more aspects of other disciplines into CS.
