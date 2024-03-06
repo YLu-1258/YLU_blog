@@ -1,6 +1,8 @@
 ---
 title: Individual seed review
 ---
+## 100%
+Last trimester, I have received a >93% grade and have also demonstrated teamwork within our team. For the most part, we used live-share to collaborate on our LSTM features and also used slack as the main communication platform across periods. 
 
 ## 90%
 ### Individual Progress
@@ -40,3 +42,6 @@ I have also been consistent with the FRQs and their applications to our PBL, the
 | FRQ 3 | [link](https://ylu-1258.github.io/YLU_blog/posts/2015FRQ3/) |
 | FRQ 4 | [link](https://ylu-1258.github.io/YLU_blog/posts/2015FRQ4/) |
 
+### Project Work
+Throughout this last trimester, I have been coordinating overall group tasks and duties with David on our project board.
+![SCrum Boards](/assets/img/individual_seed/scrum_board.png)
