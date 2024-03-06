@@ -22,5 +22,21 @@ AP Preperation Progress:
 | JAVA classtime FRQ | [link](https://ylu-1258.github.io/YLU_blog/posts/Java-FRQ-P1/) |
 
 ### GitHub Pages Blog
-Throughout the trimester, I frequently used my blog to update and record my progress through the class and progress. 
+Throughout the trimester, I frequently used my blog to update and record my progress through the class and progress.   
+
+| Blog Topic | Link |
+| - | - |
+| Learnings from writing LSTM | [link](https://ylu-1258.github.io/YLU_blog/posts/Java-LSTM-test/) |
+| Learnings from writing Dijkstra | [link](https://ylu-1258.github.io/YLU_blog/posts/Dijkstra-Algorithm/) |
+| FRQ Reviews of important topics | [link](https://ylu-1258.github.io/YLU_blog/posts/FRQ-review-1/) |
+
+### AP Work
+I have also been consistent with the FRQs and their applications to our PBL, the link to my issue can be found [here](https://github.com/YLu-1258/YLU_blog/issues/9). Additionally, the individual links to the FRQs can be found at this these links:  
+
+| Title | Link |
+| - | - |
+| FRQ 1 | [link](https://ylu-1258.github.io/YLU_blog/posts/2015FRQ1/) |
+| FRQ 2 | [link](https://ylu-1258.github.io/YLU_blog/posts/2015FRQ2/) |
+| FRQ 3 | [link](https://ylu-1258.github.io/YLU_blog/posts/2015FRQ3/) |
+| FRQ 4 | [link](https://ylu-1258.github.io/YLU_blog/posts/2015FRQ4/) |
 
