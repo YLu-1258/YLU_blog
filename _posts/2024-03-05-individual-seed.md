@@ -45,3 +45,8 @@ I have also been consistent with the FRQs and their applications to our PBL, the
 ### Project Work
 Throughout this last trimester, I have been coordinating overall group tasks and duties with David on our project board.
 ![SCrum Boards](/assets/img/individual_seed/scrum_board.png)
+
+## Debugging
+For my debugging example, I have both screenshots from the frontend and backend demonstrating how my project works.
+![BE Debugging](/assets/img/debugging/backend.png)
+![FE Debugging](/assets/img/debugging/frontend.png)
