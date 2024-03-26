@@ -1,12 +1,9 @@
 ---
 title: Workshop 1 FRQs
-author: alex
 badges: True
 comments: True
 categories: ['APCSA', 'FRQs']
-date: 2023-10-22 06:05:00 -0800
 tags: ['APCSA', 'FRQs']
-render_with_liquid: False
 type: hacks
 ---
 
