@@ -328,5 +328,141 @@ You need to implement a Java class hierarchy to represent different types of ani
 
 
 ```java
+public class Animal {
+    // Main attributes that we wanna use for our zoo animals
+    private String name;
+    private double weightInKg;
+    private String sound;
+    private boolean carnivore;
+
+    // Constructor
+    public Animal(String name, double weightInKg, String sound, boolean carnivore) {
+        this.name = name;
+        this.weightInKg = weightInKg;
+        this.sound = sound;
+        this.carnivore = carnivore;
+    }
+
+    // Method to make the animal say its name
+    public void sayName() {
+        System.out.println(sound + "! My name is " + name + ".");
+    }
+
+    // Method to convert weight from kilograms to pounds
+    public double weightInLbs() {
+        return (weightInKg / 2.20462);
+    }
+
+    // Method to demand food based on carnivore status
+    public void demandFood() {
+        if (carnivore) {
+            System.out.println(sound + "! I want meat!");
+        } else {
+            System.out.println(sound + "! I want a salad!");
+        }
+    }
+}
+
+public class Dog extends Animal {
+    private boolean tailWag;
+
+    // Constructor
+    public Dog(String name, double weightInKg, String sound, boolean carnivore, boolean tailWag) {
+        super(name, weightInKg, sound, carnivore);
+        this.tailWag = tailWag;
+    }
+
+    // Additional method specific to Dog class
+    public void wagTail() {
+        if (tailWag) {
+            System.out.println("Wagging tail happily!");
+        } else {
+            System.out.println("No tail wagging...");
+        }
+    }
+}
+
+public class Panda extends Animal {
+    private String favoriteBambooType;
+
+    // Constructor
+    public Panda(String name, double weightInKg, String sound, boolean carnivore, String favoriteBambooType) {
+        super(name, weightInKg, sound, carnivore);
+        this.favoriteBambooType = favoriteBambooType;
+    }
+
+    // Additional method specific to Panda class
+    public void eatBamboo() {
+        System.out.println("Eating " + favoriteBambooType + " bamboo.");
+    }
+}
+
+public class Penguin extends Animal {
+    private String habitat;
+
+    // Constructor
+    public Penguin(String name, double weightInKg, String sound, boolean carnivore, String habitat) {
+        super(name, weightInKg, sound, carnivore);
+        this.habitat = habitat;
+    }
+
+    // Additional method specific to Penguin class
+    public void slideOnIce() {
+        System.out.println("Sliding on ice in " + habitat + ".");
+    }
+}
+
+public class AnimalTest {
+    public static void main(String[] args) {
+        Animal lion = new Animal("Simba", 200, "Roar", true);
+        Dog dog = new Dog("Buddy", 20, "Woof", true, true);
+        Panda panda = new Panda("Po", 100, "Growl", false, "Giant");
+        Penguin penguin = new Penguin("Pingu", 10, "Squawk", false, "Antarctica");
+
+        // Testing methods inherited from Animal class
+        lion.sayName();
+        System.out.println("Lion's weight in pounds: " + lion.weightInLbs());
+        lion.demandFood();
+
+        // Testing additional methods specific to subclasses
+        dog.sayName();
+        System.out.println("Dog's weight in pounds: " + dog.weightInLbs());
+        dog.demandFood();
+        dog.wagTail();
+
+        panda.sayName();
+        System.out.println("Panda's weight in pounds: " + panda.weightInLbs());
+        panda.demandFood();
+        panda.eatBamboo();
+
+        penguin.sayName();
+        System.out.println("Penguin's weight in pounds: " + penguin.weightInLbs());
+        penguin.demandFood();
+        penguin.slideOnIce();
+    }
+}
+
+AnimalTest.main(null);
+```
+
+    Roar! My name is Simba.
+    Lion's weight in pounds: 90.71858188712795
+    Roar! I want meat!
+    Woof! My name is Buddy.
+    Dog's weight in pounds: 9.071858188712795
+    Woof! I want meat!
+    Wagging tail happily!
+    Growl! My name is Po.
+    Panda's weight in pounds: 45.35929094356398
+    Growl! I want a salad!
+    Eating Giant bamboo.
+    Squawk! My name is Pingu.
+    Penguin's weight in pounds: 4.535929094356398
+    Squawk! I want a salad!
+    Sliding on ice in Antarctica.
+
+
+
+```java
 
 ```
