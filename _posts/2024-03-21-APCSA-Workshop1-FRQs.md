@@ -129,7 +129,7 @@ import java.lang.Math;
 
 public class Calculator {
     public static double calculateSquareRoot(double input) {
-        return Math.sqrt(input);
+        return Math.sqrt(input);    
     }
 }
 
