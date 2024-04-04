@@ -7,7 +7,53 @@ type: hacks
 comments: True
 ---
 
-# Learn All Sorts
+## Learn All Sorts
+I had previously implemented all of these sorts in a project with David and Ethan, so it was pretty easy to recreate this in plain old Java again.
+
+
+```java
+import java.util.ArrayList;
+
+public class BubbleSort {
+    public static void bubbleSort(ArrayList<Integer> list) {
+        int n = list.size();
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (list.get(j) > list.get(j + 1)) {
+                    int temp = list.get(j);
+                    list.set(j, list.get(j + 1));
+                    list.set(j + 1, temp);
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        ArrayList<Integer> list = new ArrayList<>();
+        list.add(64);
+        list.add(25);
+        list.add(12);
+        list.add(22);
+        list.add(11);
+
+        System.out.println("List before sorting:");
+        System.out.println(list);
+
+        bubbleSort(list);
+
+        System.out.println("List after sorting:");
+        System.out.println(list);
+    }
+}
+
+BubbleSort.main(null);
+```
+
+    List before sorting:
+    [64, 25, 12, 22, 11]
+    List after sorting:
+    [11, 12, 22, 25, 64]
+
 
 
 ```java
@@ -221,3 +267,5 @@ QuickSort.main(null);
     List after sorting:
     [11, 12, 22, 25, 64]
 
+
+## Implementation using Linked List
