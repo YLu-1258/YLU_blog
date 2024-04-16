@@ -86,6 +86,10 @@ public class GenerateNecklace {
 ArrayList<Comparable> FlowerNecklace = GenerateNecklace.generate(); 
 ```
 
+## BubbleSort
+
+The sort is very simple, basically, the algorithm first iterates through all the elements, and for each element, the algorithm attempts to sort the previous elements in order by swapping neighboring elements until the final array is sorted.
+
 
 ```java
 public class BubbleSort {
@@ -113,6 +117,10 @@ System.out.println("Flower Necklace before sort: " + FlowerNecklace);
     Flower Necklace before sort: [Carnation, Daffodil, Daisy, Hibiscus, Lily, Orchid, Peony, Rose, Sunflower, Tulip]
 
 
+## Insertion Sort
+
+This sort algorithm is simimlar to bubble sort except it iterates through all elements of the array and then iteratively moves all elements greater than the current key to their correct position in a sorted sub array.
+
 
 ```java
 public class InsertionSort {
@@ -121,6 +129,7 @@ public class InsertionSort {
             Comparable key = list.get(i);
             int j = i - 1;
     
+            // Iteratively move all elements greater than the current key to ahead of the key.
             while (j >= 0 && list.get(j).compareTo(key) > 0) {
                 list.set(j + 1, list.get(j));
                 j--;
@@ -139,6 +148,10 @@ System.out.println("Flower Necklace before sort: " + FlowerNecklace);
     Flower Necklace before sort: [Rose, Lily, Tulip, Daisy, Sunflower, Carnation, Orchid, Daffodil, Peony, Hibiscus]
     Flower Necklace before sort: [Carnation, Daffodil, Daisy, Hibiscus, Lily, Orchid, Peony, Rose, Sunflower, Tulip]
 
+
+## Selection Sort
+
+I found this code the easiest to understand because the algorithm works by essentially moving the smallest element found to the beginning of the unsorted sub array on each iteration.
 
 
 ```java
@@ -169,6 +182,10 @@ System.out.println("Flower Necklace before sort: " + FlowerNecklace);
     Flower Necklace before sort: [Rose, Lily, Tulip, Daisy, Sunflower, Carnation, Orchid, Daffodil, Peony, Hibiscus]
     Flower Necklace before sort: [Carnation, Daffodil, Daisy, Hibiscus, Lily, Orchid, Peony, Rose, Sunflower, Tulip]
 
+
+## Quick Sort
+
+QuickSort is definitely one of the more complex algorithms that I have implmented. Unlike the previous iteractive approaches, it is most intuitive to perform QuickSort in a recursive manner. We have a partition method that sorts a given pivot element within a subarray. After running this partition method, we run the quickSort algorithm again on the two subarray separated by the pivot.
 
 
 ```java
@@ -208,6 +225,10 @@ System.out.println("Flower Necklace before sort: " + FlowerNecklace);
     Flower Necklace before sort: [Rose, Lily, Tulip, Daisy, Sunflower, Carnation, Orchid, Daffodil, Peony, Hibiscus]
     Flower Necklace before sort: [Carnation, Daffodil, Daisy, Hibiscus, Lily, Orchid, Peony, Rose, Sunflower, Tulip]
 
+
+## MergeSort
+
+This is the most simple algorithm for me to understand because it's the one I've been working with in the past few days for Algorhythmic. Essentially, the mergeSort algorithm splits the array into it's elementary elements and reassembles the final sorted array by merging all elementary elements.
 
 
 ```java
@@ -348,19 +369,18 @@ GenerateLinkedNecklace.generate()
 
 ```java
 public class MergeSortFlowerNecklace {
-    // Method to perform merge sort on the given linked list
     public static FlowerNode mergeSort(FlowerNode head) {
         // Base case: if the list is empty or has only one element, it is already sorted
         if (head == null || head.next == null) {
             return head;
         }
 
-        // Find the middle of the list
+
         FlowerNode middle = getMiddle(head);
         FlowerNode nextOfMiddle = middle.next;
         middle.next = null;
 
-        // Recursively sort the left and right halves of the list
+
         FlowerNode left = mergeSort(head);
         FlowerNode right = mergeSort(nextOfMiddle);
 
@@ -368,7 +388,7 @@ public class MergeSortFlowerNecklace {
         return merge(left, right);
     }
 
-    // Method to merge two sorted linked lists
+    // Method to merge two sorted linked lists, pretty standard merge procedure
     private static FlowerNode merge(FlowerNode left, FlowerNode right) {
         FlowerNode dummy = new FlowerNode(null);
         FlowerNode tail = dummy;
@@ -392,11 +412,12 @@ public class MergeSortFlowerNecklace {
             tail.next = right;
         }
 
-        // Return the head of the merged list
+        // Return the head of the merged list, remember TO ACTUALLY SET THE HEAD BRO
         return dummy.next;
     }
 
     // Method to find the middle node of the linked list
+    // GOD BLESS LEETCODE FOR THIS QUESTION BRUH
     private static FlowerNode getMiddle(FlowerNode head) {
         if (head == null) {
             return head;
@@ -420,13 +441,3 @@ System.out.println("Flower Necklace before sort: " + flowerNecklace);
     Flower Necklace before sort: (Name: Rose, Petals: 5, Color: Red) -> (Name: Lily, Petals: 6, Color: White) -> (Name: Tulip, Petals: 4, Color: Yellow) -> (Name: Daisy, Petals: 8, Color: Pink) -> (Name: Sunflower, Petals: 3, Color: Yellow) -> (Name: Carnation, Petals: 5, Color: Pink) -> (Name: Orchid, Petals: 7, Color: Purple) -> (Name: Daffodil, Petals: 4, Color: Yellow) -> (Name: Peony, Petals: 6, Color: Pink) -> (Name: Hibiscus, Petals: 5, Color: Red) -> null
     Flower Necklace before sort: (Name: Carnation, Petals: 5, Color: Pink) -> (Name: Daffodil, Petals: 4, Color: Yellow) -> (Name: Daisy, Petals: 8, Color: Pink) -> (Name: Hibiscus, Petals: 5, Color: Red) -> (Name: Lily, Petals: 6, Color: White) -> (Name: Orchid, Petals: 7, Color: Purple) -> (Name: Peony, Petals: 6, Color: Pink) -> (Name: Rose, Petals: 5, Color: Red) -> (Name: Sunflower, Petals: 3, Color: Yellow) -> (Name: Tulip, Petals: 4, Color: Yellow) -> null
 
-
-
-```java
-
-```
-
-
-```java
-
-```
