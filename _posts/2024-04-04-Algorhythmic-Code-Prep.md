@@ -15,15 +15,66 @@ First we create a comparable object for our flowers.
 
 
 ```java
-public class Flower implements Comparable<Flower> {
-    private int numberPetals;
-    private String name;
-    private String color;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+public abstract class FlowerCollectable implements Comparable<FlowerCollectable> {
+    public final String masterType = "FlowerCollectable";
+	private String type;
+    protected int numberPetals;
+    protected String name;
+    protected String color;
+
+    // Are we selling or buying the Flower?
+    // @NotEmpty
+    // private String operation;
+
+    public interface KeyTypes {
+		String name();
+	}
+	protected abstract KeyTypes getKey();
+
+    public String getMasterType() {
+		return masterType;
+	}
+
+	// getter
+	public String getType() {
+		return type;
+	}
+
+	// setter
+	public void setType(String type) {
+		this.type = type;
+    }
+
+    // this method is used to establish key order
+	public abstract String toString();
+
+	// this method is used to compare toString of objects
+	public int compareTo(FlowerCollectable obj) {
+		return this.toString().compareTo(obj.toString());
+	}
+
+    // Essentially, we record who buys the Flower (id), what Flower they bought (name), cost of the share (cost), amount of the shares (shares), time of the transaction (time), and whether it was bought or sold (operation)
+    public FlowerCollectable(String name, String color, Integer numberPetals) {
+        this.name = name;
+        this.color = color;
+        this.numberPetals = numberPetals;
+    }
+}
+```
+
+
+```java
+public class Flower extends FlowerCollectable implements Iterable<Flower> {
+    public enum KeyType implements KeyTypes {petals, name, color}
+    public static KeyTypes key = KeyType.name;
+	public void setOrder(KeyTypes key) {Flower.key = key;}
 
     public Flower(int p, String n, String c) {
-        this.numberPetals = p;
-        this.name = n;
-        this.color = c;
+        super(n,c,p);
     }
 
     // Getters
@@ -52,21 +103,177 @@ public class Flower implements Comparable<Flower> {
         this.color = color;
     }
 
-    @Override
     public String toString() {
-        return this.name;
+        if (KeyType.petals.equals(Flower.key)) {
+            return "(" + Integer.toString(this.numberPetals) + ")";
+        } else if (KeyType.name.equals(Flower.key)) {
+            return "(" + this.name + ")";
+        } else if (KeyType.color.equals(Flower.key)) {
+            return "(" + this.color + ")";
+        } else {
+            return "Invalid Key";
+        }
     }
 
-    @Override
     public int compareTo(Flower otherFlower) {
         return this.toString().compareTo(otherFlower.toString());
     }
-}
 
+	protected KeyTypes getKey() { return Flower.key; }
+
+    public Iterator<Flower> iterator() {
+        List<Flower> sortedList = new ArrayList<>(Arrays.asList(this));
+        sortedList.sort(Comparator.naturalOrder());
+        return sortedList.iterator();
+    }
+}
+```
+
+
+```java
+public class FlowerIterator implements Iterable<Flower> {
+    private List<Flower> FlowerList;
+
+    public FlowerIterator(List<Flower> FlowerList) {
+        this.FlowerList = FlowerList;
+    }
+
+    public Integer size() {
+        return this.FlowerList.size();
+    }
+
+    public void setKeyType(Flower.KeyType keyType) {
+        // Update keyType for all Flowers in the iterator
+        for (Flower Flower : FlowerList) {
+            Flower.setOrder(keyType);
+        }
+    }
+
+    public Iterator<Flower> iterator() {
+        return FlowerList.iterator();
+    }
+
+    @Override
+    public String toString() {
+        String res = "[";
+        for (Flower flower : FlowerList) {
+            res = res + "(" + flower.getName() + ", " + flower.getColor() + ", petals: " + flower.getNumberPetals() + "), ";
+        }
+        return res.substring(0,res.length()-2) + "]";
+    }
+
+    public void mergeSort(int left, int right) {
+        if (left < right) {
+            int mid = (left + right) / 2;
+            mergeSort(left, mid);
+            mergeSort(mid + 1, right);
+            merge(left, mid, right);
+        }
+    }
+
+    private void merge(int left, int mid, int right) {
+        int n1 = mid - left + 1;
+        int n2 = right - mid;
+
+        List<Flower> leftList = new ArrayList<>(this.FlowerList.subList(left, mid + 1));
+        List<Flower> rightList = new ArrayList<>(this.FlowerList.subList(mid + 1, right + 1));
+
+        int i = 0, j = 0, k = left;
+
+        while (i < n1 && j < n2) {
+            if (leftList.get(i).compareTo(rightList.get(j)) <= 0) {
+                this.FlowerList.set(k++, leftList.get(i++));
+            } else {
+                this.FlowerList.set(k++, rightList.get(j++));
+            }
+        }
+
+        while (i < n1) {
+            this.FlowerList.set(k++, leftList.get(i++));
+        }
+
+        while (j < n2) {
+            this.FlowerList.set(k++, rightList.get(j++));
+        }
+    }
+
+    public void quickSort(int low, int high) {
+        if (low < high) {
+            int pi = partition(low, high);
+            quickSort(low, pi - 1);
+            quickSort(pi + 1, high);
+        }
+    }
+    
+    private int partition(int low, int high) {
+        Flower pivot = this.FlowerList.get(high);
+        int i = low - 1;
+        for (int j = low; j < high; j++) {
+            if (this.FlowerList.get(j).compareTo(pivot) < 0) {
+                i++;
+                Flower temp = this.FlowerList.get(i);
+                this.FlowerList.set(i, this.FlowerList.get(j));
+                this.FlowerList.set(j, temp);
+            }
+        }
+        Flower temp = this.FlowerList.get(i + 1);
+        this.FlowerList.set(i + 1, this.FlowerList.get(high));
+        this.FlowerList.set(high, temp);
+        return i + 1;
+    }
+
+    public void selectionSort() {
+        int n = this.FlowerList.size();
+        for (int i = 0; i < n - 1; i++) {
+            int minIndex = i;
+            for (int j = i + 1; j < n; j++) {
+                if (this.FlowerList.get(j).compareTo(this.FlowerList.get(minIndex)) < 0) {
+                    minIndex = j;
+                }
+            }
+            // Swap the found minimum element with the first element
+            Flower temp = this.FlowerList.get(minIndex);
+            this.FlowerList.set(minIndex, this.FlowerList.get(i));
+            this.FlowerList.set(i, temp);
+        }
+    }
+
+    public void insertionSort() {
+        for (int i = 1; i < this.FlowerList.size(); i++) {
+            Flower key = this.FlowerList.get(i);
+            int j = i - 1;
+    
+            // Iteratively move all elements greater than the current key to ahead of the key.
+            while (j >= 0 && this.FlowerList.get(j).compareTo(key) > 0) {
+                this.FlowerList.set(j + 1, this.FlowerList.get(j));
+                j--;
+            }
+            this.FlowerList.set(j + 1, key);
+        }
+    }
+
+    public void bubbleSort() {
+        int n = this.FlowerList.size();
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (this.FlowerList.get(j).compareTo(this.FlowerList.get(j + 1)) > 0) {
+                    // Swap list[j] with list[j+1]
+                    Flower temp = this.FlowerList.get(j);
+                    this.FlowerList.set(j, this.FlowerList.get(j + 1));
+                    this.FlowerList.set(j + 1, temp);
+                }
+            }
+        }
+    }
+}
+```
+
+
+```java
 public class GenerateNecklace {
-    public static ArrayList<Comparable> generate() {
+    public static FlowerIterator generate() {
         // Create an ArrayList to store Flower objects
-        ArrayList<Comparable> flowerNecklace = new ArrayList<>();
+        ArrayList<Flower> flowerNecklace = new ArrayList<>();
 
         // Add Flower objects to the ArrayList
         flowerNecklace.add(new Flower(5, "Rose", "Red"));
@@ -79,11 +286,11 @@ public class GenerateNecklace {
         flowerNecklace.add(new Flower(4, "Daffodil", "Yellow"));
         flowerNecklace.add(new Flower(6, "Peony", "Pink"));
         flowerNecklace.add(new Flower(5, "Hibiscus", "Red"));
-        return flowerNecklace;
+        FlowerIterator iterator = new FlowerIterator(flowerNecklace);
+        return iterator;
     }
 }
-
-ArrayList<Comparable> FlowerNecklace = GenerateNecklace.generate(); 
+FlowerIterator FlowerNecklace = GenerateNecklace.generate(); 
 ```
 
 ## BubbleSort
@@ -91,30 +298,44 @@ ArrayList<Comparable> FlowerNecklace = GenerateNecklace.generate();
 The sort is very simple, basically, the algorithm first iterates through all the elements, and for each element, the algorithm attempts to sort the previous elements in order by swapping neighboring elements until the final array is sorted.
 
 
+
+
 ```java
-public class BubbleSort {
-    public static void bubbleSort(ArrayList<Comparable> list) {
-        int n = list.size();
-        for (int i = 0; i < n - 1; i++) {
-            for (int j = 0; j < n - i - 1; j++) {
-                if (list.get(j).compareTo(list.get(j + 1)) > 0) {
-                    // Swap list[j] with list[j+1]
-                    Comparable temp = list.get(j);
-                    list.set(j, list.get(j + 1));
-                    list.set(j + 1, temp);
-                }
-            }
-        }
-    }
-}
-ArrayList<Comparable> FlowerNecklace = GenerateNecklace.generate(); 
+FlowerIterator FlowerNecklace = GenerateNecklace.generate(); 
+System.out.println("KEY: Name");
+System.out.println("============================");
+FlowerNecklace.setKeyType(Flower.KeyType.valueOf("name"));
 System.out.println("Flower Necklace before sort: " + FlowerNecklace);
-BubbleSort.bubbleSort(FlowerNecklace);
+FlowerNecklace.bubbleSort();
+System.out.println("Flower Necklace after sort: " + FlowerNecklace);
+System.out.println("KEY: color");
+System.out.println("============================");
+FlowerNecklace.setKeyType(Flower.KeyType.valueOf("color"));
 System.out.println("Flower Necklace before sort: " + FlowerNecklace);
+FlowerNecklace.bubbleSort();
+System.out.println("Flower Necklace after sort: " + FlowerNecklace);
+System.out.println("KEY: petals");
+System.out.println("============================");
+FlowerNecklace.setKeyType(Flower.KeyType.valueOf("petals"));
+System.out.println("Flower Necklace before sort: " + FlowerNecklace);
+FlowerNecklace.bubbleSort();
+System.out.println("Flower Necklace after sort: " + FlowerNecklace);
 ```
 
-    Flower Necklace before sort: [Rose, Lily, Tulip, Daisy, Sunflower, Carnation, Orchid, Daffodil, Peony, Hibiscus]
-    Flower Necklace before sort: [Carnation, Daffodil, Daisy, Hibiscus, Lily, Orchid, Peony, Rose, Sunflower, Tulip]
+    KEY: Name
+    ============================
+    Flower Necklace before sort: [(Rose, Red, petals: 5), (Lily, White, petals: 6), (Tulip, Yellow, petals: 4), (Daisy, Pink, petals: 8), (Sunflower, Yellow, petals: 3), (Carnation, Pink, petals: 5), (Orchid, Purple, petals: 7), (Daffodil, Yellow, petals: 4), (Peony, Pink, petals: 6), (Hibiscus, Red, petals: 5)]
+    Flower Necklace after sort: [(Carnation, Pink, petals: 5), (Daffodil, Yellow, petals: 4), (Daisy, Pink, petals: 8), (Hibiscus, Red, petals: 5), (Lily, White, petals: 6), (Orchid, Purple, petals: 7), (Peony, Pink, petals: 6), (Rose, Red, petals: 5), (Sunflower, Yellow, petals: 3), (Tulip, Yellow, petals: 4)]
+
+
+    KEY: color
+    ============================
+    Flower Necklace before sort: [(Carnation, Pink, petals: 5), (Daffodil, Yellow, petals: 4), (Daisy, Pink, petals: 8), (Hibiscus, Red, petals: 5), (Lily, White, petals: 6), (Orchid, Purple, petals: 7), (Peony, Pink, petals: 6), (Rose, Red, petals: 5), (Sunflower, Yellow, petals: 3), (Tulip, Yellow, petals: 4)]
+    Flower Necklace after sort: [(Carnation, Pink, petals: 5), (Daisy, Pink, petals: 8), (Peony, Pink, petals: 6), (Orchid, Purple, petals: 7), (Hibiscus, Red, petals: 5), (Rose, Red, petals: 5), (Lily, White, petals: 6), (Daffodil, Yellow, petals: 4), (Sunflower, Yellow, petals: 3), (Tulip, Yellow, petals: 4)]
+    KEY: petals
+    ============================
+    Flower Necklace before sort: [(Carnation, Pink, petals: 5), (Daisy, Pink, petals: 8), (Peony, Pink, petals: 6), (Orchid, Purple, petals: 7), (Hibiscus, Red, petals: 5), (Rose, Red, petals: 5), (Lily, White, petals: 6), (Daffodil, Yellow, petals: 4), (Sunflower, Yellow, petals: 3), (Tulip, Yellow, petals: 4)]
+    Flower Necklace after sort: [(Sunflower, Yellow, petals: 3), (Daffodil, Yellow, petals: 4), (Tulip, Yellow, petals: 4), (Carnation, Pink, petals: 5), (Hibiscus, Red, petals: 5), (Rose, Red, petals: 5), (Peony, Pink, petals: 6), (Lily, White, petals: 6), (Orchid, Purple, petals: 7), (Daisy, Pink, petals: 8)]
 
 
 ## Insertion Sort
@@ -123,30 +344,41 @@ This sort algorithm is simimlar to bubble sort except it iterates through all el
 
 
 ```java
-public class InsertionSort {
-    public static void insertionSort(ArrayList<Comparable> list) {
-        for (int i = 1; i < list.size(); i++) {
-            Comparable key = list.get(i);
-            int j = i - 1;
-    
-            // Iteratively move all elements greater than the current key to ahead of the key.
-            while (j >= 0 && list.get(j).compareTo(key) > 0) {
-                list.set(j + 1, list.get(j));
-                j--;
-            }
-            list.set(j + 1, key);
-        }
-    }
-}
-
-ArrayList<Comparable> FlowerNecklace = GenerateNecklace.generate(); 
+FlowerIterator FlowerNecklace = GenerateNecklace.generate(); 
+System.out.println("KEY: Name");
+System.out.println("============================");
+FlowerNecklace.setKeyType(Flower.KeyType.valueOf("name"));
 System.out.println("Flower Necklace before sort: " + FlowerNecklace);
-InsertionSort.insertionSort(FlowerNecklace);
+FlowerNecklace.insertionSort();
+System.out.println("Flower Necklace after sort: " + FlowerNecklace);
+System.out.println("KEY: color");
+System.out.println("============================");
+FlowerNecklace.setKeyType(Flower.KeyType.valueOf("color"));
 System.out.println("Flower Necklace before sort: " + FlowerNecklace);
+FlowerNecklace.insertionSort();
+System.out.println("Flower Necklace after sort: " + FlowerNecklace);
+System.out.println("KEY: petals");
+System.out.println("============================");
+FlowerNecklace.setKeyType(Flower.KeyType.valueOf("petals"));
+System.out.println("Flower Necklace before sort: " + FlowerNecklace);
+FlowerNecklace.insertionSort();
+System.out.println("Flower Necklace after sort: " + FlowerNecklace);
 ```
 
-    Flower Necklace before sort: [Rose, Lily, Tulip, Daisy, Sunflower, Carnation, Orchid, Daffodil, Peony, Hibiscus]
-    Flower Necklace before sort: [Carnation, Daffodil, Daisy, Hibiscus, Lily, Orchid, Peony, Rose, Sunflower, Tulip]
+    KEY: Name
+    ============================
+    Flower Necklace before sort: [(Rose, Red, petals: 5), (Lily, White, petals: 6), (Tulip, Yellow, petals: 4), (Daisy, Pink, petals: 8), (Sunflower, Yellow, petals: 3), (Carnation, Pink, petals: 5), (Orchid, Purple, petals: 7), (Daffodil, Yellow, petals: 4), (Peony, Pink, petals: 6), (Hibiscus, Red, petals: 5)]
+
+
+    Flower Necklace after sort: [(Carnation, Pink, petals: 5), (Daffodil, Yellow, petals: 4), (Daisy, Pink, petals: 8), (Hibiscus, Red, petals: 5), (Lily, White, petals: 6), (Orchid, Purple, petals: 7), (Peony, Pink, petals: 6), (Rose, Red, petals: 5), (Sunflower, Yellow, petals: 3), (Tulip, Yellow, petals: 4)]
+    KEY: color
+    ============================
+    Flower Necklace before sort: [(Carnation, Pink, petals: 5), (Daffodil, Yellow, petals: 4), (Daisy, Pink, petals: 8), (Hibiscus, Red, petals: 5), (Lily, White, petals: 6), (Orchid, Purple, petals: 7), (Peony, Pink, petals: 6), (Rose, Red, petals: 5), (Sunflower, Yellow, petals: 3), (Tulip, Yellow, petals: 4)]
+    Flower Necklace after sort: [(Carnation, Pink, petals: 5), (Daisy, Pink, petals: 8), (Peony, Pink, petals: 6), (Orchid, Purple, petals: 7), (Hibiscus, Red, petals: 5), (Rose, Red, petals: 5), (Lily, White, petals: 6), (Daffodil, Yellow, petals: 4), (Sunflower, Yellow, petals: 3), (Tulip, Yellow, petals: 4)]
+    KEY: petals
+    ============================
+    Flower Necklace before sort: [(Carnation, Pink, petals: 5), (Daisy, Pink, petals: 8), (Peony, Pink, petals: 6), (Orchid, Purple, petals: 7), (Hibiscus, Red, petals: 5), (Rose, Red, petals: 5), (Lily, White, petals: 6), (Daffodil, Yellow, petals: 4), (Sunflower, Yellow, petals: 3), (Tulip, Yellow, petals: 4)]
+    Flower Necklace after sort: [(Sunflower, Yellow, petals: 3), (Daffodil, Yellow, petals: 4), (Tulip, Yellow, petals: 4), (Carnation, Pink, petals: 5), (Hibiscus, Red, petals: 5), (Rose, Red, petals: 5), (Peony, Pink, petals: 6), (Lily, White, petals: 6), (Orchid, Purple, petals: 7), (Daisy, Pink, petals: 8)]
 
 
 ## Selection Sort
@@ -155,32 +387,41 @@ I found this code the easiest to understand because the algorithm works by essen
 
 
 ```java
-public class SelectionSort {
-    public static void selectionSort(ArrayList<Comparable> list) {
-        int n = list.size();
-        for (int i = 0; i < n - 1; i++) {
-            int minIndex = i;
-            for (int j = i + 1; j < n; j++) {
-                if (list.get(j).compareTo(list.get(minIndex)) < 0) {
-                    minIndex = j;
-                }
-            }
-            // Swap the found minimum element with the first element
-            Comparable temp = list.get(minIndex);
-            list.set(minIndex, list.get(i));
-            list.set(i, temp);
-        }
-    }
-}
-
-ArrayList<Comparable> FlowerNecklace = GenerateNecklace.generate(); 
+FlowerIterator FlowerNecklace = GenerateNecklace.generate(); 
+System.out.println("KEY: Name");
+System.out.println("============================");
+FlowerNecklace.setKeyType(Flower.KeyType.valueOf("name"));
 System.out.println("Flower Necklace before sort: " + FlowerNecklace);
-SelectionSort.selectionSort(FlowerNecklace);
+FlowerNecklace.selectionSort();
+System.out.println("Flower Necklace after sort: " + FlowerNecklace);
+System.out.println("KEY: color");
+System.out.println("============================");
+FlowerNecklace.setKeyType(Flower.KeyType.valueOf("color"));
 System.out.println("Flower Necklace before sort: " + FlowerNecklace);
+FlowerNecklace.selectionSort();
+System.out.println("Flower Necklace after sort: " + FlowerNecklace);
+System.out.println("KEY: petals");
+System.out.println("============================");
+FlowerNecklace.setKeyType(Flower.KeyType.valueOf("petals"));
+System.out.println("Flower Necklace before sort: " + FlowerNecklace);
+FlowerNecklace.selectionSort();
+System.out.println("Flower Necklace after sort: " + FlowerNecklace);
 ```
 
-    Flower Necklace before sort: [Rose, Lily, Tulip, Daisy, Sunflower, Carnation, Orchid, Daffodil, Peony, Hibiscus]
-    Flower Necklace before sort: [Carnation, Daffodil, Daisy, Hibiscus, Lily, Orchid, Peony, Rose, Sunflower, Tulip]
+    KEY: Name
+    ============================
+    Flower Necklace before sort: [(Rose, Red, petals: 5), (Lily, White, petals: 6), (Tulip, Yellow, petals: 4), (Daisy, Pink, petals: 8), (Sunflower, Yellow, petals: 3), (Carnation, Pink, petals: 5), (Orchid, Purple, petals: 7), (Daffodil, Yellow, petals: 4), (Peony, Pink, petals: 6), (Hibiscus, Red, petals: 5)]
+
+
+    Flower Necklace after sort: [(Carnation, Pink, petals: 5), (Daffodil, Yellow, petals: 4), (Daisy, Pink, petals: 8), (Hibiscus, Red, petals: 5), (Lily, White, petals: 6), (Orchid, Purple, petals: 7), (Peony, Pink, petals: 6), (Rose, Red, petals: 5), (Sunflower, Yellow, petals: 3), (Tulip, Yellow, petals: 4)]
+    KEY: color
+    ============================
+    Flower Necklace before sort: [(Carnation, Pink, petals: 5), (Daffodil, Yellow, petals: 4), (Daisy, Pink, petals: 8), (Hibiscus, Red, petals: 5), (Lily, White, petals: 6), (Orchid, Purple, petals: 7), (Peony, Pink, petals: 6), (Rose, Red, petals: 5), (Sunflower, Yellow, petals: 3), (Tulip, Yellow, petals: 4)]
+    Flower Necklace after sort: [(Carnation, Pink, petals: 5), (Daisy, Pink, petals: 8), (Peony, Pink, petals: 6), (Orchid, Purple, petals: 7), (Hibiscus, Red, petals: 5), (Rose, Red, petals: 5), (Lily, White, petals: 6), (Daffodil, Yellow, petals: 4), (Sunflower, Yellow, petals: 3), (Tulip, Yellow, petals: 4)]
+    KEY: petals
+    ============================
+    Flower Necklace before sort: [(Carnation, Pink, petals: 5), (Daisy, Pink, petals: 8), (Peony, Pink, petals: 6), (Orchid, Purple, petals: 7), (Hibiscus, Red, petals: 5), (Rose, Red, petals: 5), (Lily, White, petals: 6), (Daffodil, Yellow, petals: 4), (Sunflower, Yellow, petals: 3), (Tulip, Yellow, petals: 4)]
+    Flower Necklace after sort: [(Sunflower, Yellow, petals: 3), (Daffodil, Yellow, petals: 4), (Tulip, Yellow, petals: 4), (Hibiscus, Red, petals: 5), (Rose, Red, petals: 5), (Carnation, Pink, petals: 5), (Lily, White, petals: 6), (Peony, Pink, petals: 6), (Orchid, Purple, petals: 7), (Daisy, Pink, petals: 8)]
 
 
 ## Quick Sort
@@ -189,41 +430,41 @@ QuickSort is definitely one of the more complex algorithms that I have implmente
 
 
 ```java
-public class QuickSort{
-    public static void quickSort(ArrayList<Comparable> list, int low, int high) {
-        if (low < high) {
-            int pi = partition(list, low, high);
-            quickSort(list, low, pi - 1);
-            quickSort(list, pi + 1, high);
-        }
-    }
-    
-    private static int partition(ArrayList<Comparable> list, int low, int high) {
-        Comparable pivot = list.get(high);
-        int i = low - 1;
-        for (int j = low; j < high; j++) {
-            if (list.get(j).compareTo(pivot) < 0) {
-                i++;
-                Comparable temp = list.get(i);
-                list.set(i, list.get(j));
-                list.set(j, temp);
-            }
-        }
-        Comparable temp = list.get(i + 1);
-        list.set(i + 1, list.get(high));
-        list.set(high, temp);
-        return i + 1;
-    }
-}
-
-ArrayList<Comparable> FlowerNecklace = GenerateNecklace.generate(); 
+FlowerIterator FlowerNecklace = GenerateNecklace.generate(); 
+System.out.println("KEY: Name");
+System.out.println("============================");
+FlowerNecklace.setKeyType(Flower.KeyType.valueOf("name"));
 System.out.println("Flower Necklace before sort: " + FlowerNecklace);
-QuickSort.quickSort(FlowerNecklace, 0, FlowerNecklace.size()-1);
+FlowerNecklace.quickSort(0, FlowerNecklace.size()-1);
+System.out.println("Flower Necklace after sort: " + FlowerNecklace);
+System.out.println("KEY: color");
+System.out.println("============================");
+FlowerNecklace.setKeyType(Flower.KeyType.valueOf("color"));
 System.out.println("Flower Necklace before sort: " + FlowerNecklace);
+FlowerNecklace.quickSort(0, FlowerNecklace.size()-1);
+System.out.println("Flower Necklace after sort: " + FlowerNecklace);
+System.out.println("KEY: petals");
+System.out.println("============================");
+FlowerNecklace.setKeyType(Flower.KeyType.valueOf("petals"));
+System.out.println("Flower Necklace before sort: " + FlowerNecklace);
+FlowerNecklace.quickSort(0, FlowerNecklace.size()-1);
+System.out.println("Flower Necklace after sort: " + FlowerNecklace);
 ```
 
-    Flower Necklace before sort: [Rose, Lily, Tulip, Daisy, Sunflower, Carnation, Orchid, Daffodil, Peony, Hibiscus]
-    Flower Necklace before sort: [Carnation, Daffodil, Daisy, Hibiscus, Lily, Orchid, Peony, Rose, Sunflower, Tulip]
+    KEY: Name
+    ============================
+    Flower Necklace before sort: [(Rose, Red, petals: 5), (Lily, White, petals: 6), (Tulip, Yellow, petals: 4), (Daisy, Pink, petals: 8), (Sunflower, Yellow, petals: 3), (Carnation, Pink, petals: 5), (Orchid, Purple, petals: 7), (Daffodil, Yellow, petals: 4), (Peony, Pink, petals: 6), (Hibiscus, Red, petals: 5)]
+
+
+    Flower Necklace after sort: [(Carnation, Pink, petals: 5), (Daffodil, Yellow, petals: 4), (Daisy, Pink, petals: 8), (Hibiscus, Red, petals: 5), (Lily, White, petals: 6), (Orchid, Purple, petals: 7), (Peony, Pink, petals: 6), (Rose, Red, petals: 5), (Sunflower, Yellow, petals: 3), (Tulip, Yellow, petals: 4)]
+    KEY: color
+    ============================
+    Flower Necklace before sort: [(Carnation, Pink, petals: 5), (Daffodil, Yellow, petals: 4), (Daisy, Pink, petals: 8), (Hibiscus, Red, petals: 5), (Lily, White, petals: 6), (Orchid, Purple, petals: 7), (Peony, Pink, petals: 6), (Rose, Red, petals: 5), (Sunflower, Yellow, petals: 3), (Tulip, Yellow, petals: 4)]
+    Flower Necklace after sort: [(Peony, Pink, petals: 6), (Carnation, Pink, petals: 5), (Daisy, Pink, petals: 8), (Orchid, Purple, petals: 7), (Rose, Red, petals: 5), (Hibiscus, Red, petals: 5), (Lily, White, petals: 6), (Tulip, Yellow, petals: 4), (Daffodil, Yellow, petals: 4), (Sunflower, Yellow, petals: 3)]
+    KEY: petals
+    ============================
+    Flower Necklace before sort: [(Peony, Pink, petals: 6), (Carnation, Pink, petals: 5), (Daisy, Pink, petals: 8), (Orchid, Purple, petals: 7), (Rose, Red, petals: 5), (Hibiscus, Red, petals: 5), (Lily, White, petals: 6), (Tulip, Yellow, petals: 4), (Daffodil, Yellow, petals: 4), (Sunflower, Yellow, petals: 3)]
+    Flower Necklace after sort: [(Sunflower, Yellow, petals: 3), (Daffodil, Yellow, petals: 4), (Tulip, Yellow, petals: 4), (Carnation, Pink, petals: 5), (Hibiscus, Red, petals: 5), (Rose, Red, petals: 5), (Peony, Pink, petals: 6), (Lily, White, petals: 6), (Orchid, Purple, petals: 7), (Daisy, Pink, petals: 8)]
 
 
 ## MergeSort
@@ -232,46 +473,41 @@ This is the most simple algorithm for me to understand because it's the one I've
 
 
 ```java
-public class MergeSort {
-    public static void mergeSort(ArrayList<Comparable> list) {
-        if (list.size() > 1) {
-            int mid = list.size() / 2;
-            ArrayList<Comparable> left = new ArrayList<>(list.subList(0, mid));
-            ArrayList<Comparable> right = new ArrayList<>(list.subList(mid, list.size()));
-    
-            mergeSort(left);
-            mergeSort(right);
-    
-            merge(list, left, right);
-        }
-    }
-    
-    private static void merge(ArrayList<Comparable> list, ArrayList<Comparable> left, ArrayList<Comparable> right) {
-        int i = 0, j = 0, k = 0;
-        while (i < left.size() && j < right.size()) {
-            if (left.get(i).compareTo(right.get(j)) <= 0) {
-                list.set(k++, left.get(i++));
-            } else {
-                list.set(k++, right.get(j++));
-            }
-        }
-        while (i < left.size()) {
-            list.set(k++, left.get(i++));
-        }
-        while (j < right.size()) {
-            list.set(k++, right.get(j++));
-        }
-    }    
-}
-
-ArrayList<Comparable> FlowerNecklace = GenerateNecklace.generate(); 
+FlowerIterator FlowerNecklace = GenerateNecklace.generate(); 
+System.out.println("KEY: Name");
+System.out.println("============================");
+FlowerNecklace.setKeyType(Flower.KeyType.valueOf("name"));
 System.out.println("Flower Necklace before sort: " + FlowerNecklace);
-MergeSort.mergeSort(FlowerNecklace);
+FlowerNecklace.mergeSort(0, FlowerNecklace.size()-1);
+System.out.println("Flower Necklace after sort: " + FlowerNecklace);
+System.out.println("KEY: color");
+System.out.println("============================");
+FlowerNecklace.setKeyType(Flower.KeyType.valueOf("color"));
 System.out.println("Flower Necklace before sort: " + FlowerNecklace);
+FlowerNecklace.mergeSort(0, FlowerNecklace.size()-1);
+System.out.println("Flower Necklace after sort: " + FlowerNecklace);
+System.out.println("KEY: petals");
+System.out.println("============================");
+FlowerNecklace.setKeyType(Flower.KeyType.valueOf("petals"));
+System.out.println("Flower Necklace before sort: " + FlowerNecklace);
+FlowerNecklace.mergeSort(0, FlowerNecklace.size()-1);
+System.out.println("Flower Necklace after sort: " + FlowerNecklace);
 ```
 
-    Flower Necklace before sort: [Rose, Lily, Tulip, Daisy, Sunflower, Carnation, Orchid, Daffodil, Peony, Hibiscus]
-    Flower Necklace before sort: [Carnation, Daffodil, Daisy, Hibiscus, Lily, Orchid, Peony, Rose, Sunflower, Tulip]
+    KEY: Name
+    ============================
+    Flower Necklace before sort: [(Rose, Red, petals: 5), (Lily, White, petals: 6), (Tulip, Yellow, petals: 4), (Daisy, Pink, petals: 8), (Sunflower, Yellow, petals: 3), (Carnation, Pink, petals: 5), (Orchid, Purple, petals: 7), (Daffodil, Yellow, petals: 4), (Peony, Pink, petals: 6), (Hibiscus, Red, petals: 5)]
+    Flower Necklace after sort: [(Carnation, Pink, petals: 5), (Daffodil, Yellow, petals: 4), (Daisy, Pink, petals: 8), (Hibiscus, Red, petals: 5), (Lily, White, petals: 6), (Orchid, Purple, petals: 7), (Peony, Pink, petals: 6), (Rose, Red, petals: 5), (Sunflower, Yellow, petals: 3), (Tulip, Yellow, petals: 4)]
+
+
+    KEY: color
+    ============================
+    Flower Necklace before sort: [(Carnation, Pink, petals: 5), (Daffodil, Yellow, petals: 4), (Daisy, Pink, petals: 8), (Hibiscus, Red, petals: 5), (Lily, White, petals: 6), (Orchid, Purple, petals: 7), (Peony, Pink, petals: 6), (Rose, Red, petals: 5), (Sunflower, Yellow, petals: 3), (Tulip, Yellow, petals: 4)]
+    Flower Necklace after sort: [(Carnation, Pink, petals: 5), (Daisy, Pink, petals: 8), (Peony, Pink, petals: 6), (Orchid, Purple, petals: 7), (Hibiscus, Red, petals: 5), (Rose, Red, petals: 5), (Lily, White, petals: 6), (Daffodil, Yellow, petals: 4), (Sunflower, Yellow, petals: 3), (Tulip, Yellow, petals: 4)]
+    KEY: petals
+    ============================
+    Flower Necklace before sort: [(Carnation, Pink, petals: 5), (Daisy, Pink, petals: 8), (Peony, Pink, petals: 6), (Orchid, Purple, petals: 7), (Hibiscus, Red, petals: 5), (Rose, Red, petals: 5), (Lily, White, petals: 6), (Daffodil, Yellow, petals: 4), (Sunflower, Yellow, petals: 3), (Tulip, Yellow, petals: 4)]
+    Flower Necklace after sort: [(Sunflower, Yellow, petals: 3), (Daffodil, Yellow, petals: 4), (Tulip, Yellow, petals: 4), (Carnation, Pink, petals: 5), (Hibiscus, Red, petals: 5), (Rose, Red, petals: 5), (Peony, Pink, petals: 6), (Lily, White, petals: 6), (Orchid, Purple, petals: 7), (Daisy, Pink, petals: 8)]
 
 
 ## Implementation using Linked List
@@ -439,5 +675,7 @@ System.out.println("Flower Necklace before sort: " + flowerNecklace);
 ```
 
     Flower Necklace before sort: (Name: Rose, Petals: 5, Color: Red) -> (Name: Lily, Petals: 6, Color: White) -> (Name: Tulip, Petals: 4, Color: Yellow) -> (Name: Daisy, Petals: 8, Color: Pink) -> (Name: Sunflower, Petals: 3, Color: Yellow) -> (Name: Carnation, Petals: 5, Color: Pink) -> (Name: Orchid, Petals: 7, Color: Purple) -> (Name: Daffodil, Petals: 4, Color: Yellow) -> (Name: Peony, Petals: 6, Color: Pink) -> (Name: Hibiscus, Petals: 5, Color: Red) -> null
+
+
     Flower Necklace before sort: (Name: Carnation, Petals: 5, Color: Pink) -> (Name: Daffodil, Petals: 4, Color: Yellow) -> (Name: Daisy, Petals: 8, Color: Pink) -> (Name: Hibiscus, Petals: 5, Color: Red) -> (Name: Lily, Petals: 6, Color: White) -> (Name: Orchid, Petals: 7, Color: Purple) -> (Name: Peony, Petals: 6, Color: Pink) -> (Name: Rose, Petals: 5, Color: Red) -> (Name: Sunflower, Petals: 3, Color: Yellow) -> (Name: Tulip, Petals: 4, Color: Yellow) -> null
 

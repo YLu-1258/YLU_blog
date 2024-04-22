@@ -95,6 +95,8 @@ System.out.println(testBook.getUserCheckedOut());
     ============================= 
      UPDATING USER 
     =============================
+
+
     Pride and Prejudice
     Jane Austen
     0
@@ -309,6 +311,8 @@ System.out.println("Is the temperature freezing? " + temp.isFreezing());
     Updated Temperature: 30.0 Celsius
     Temperature in Fahrenheit: 86.0 Fahrenheit
     After adding 5 degrees Celsius: 35.0 Celsius
+
+
     After subtracting 10 degrees Celsius: 25.0 Celsius
     Is the temperature boiling? false
     Is the temperature freezing? false
