@@ -21,7 +21,7 @@ Overall, I found the event very fun as I was able to see what other creative met
 
 
 ## Learn All Sorts
-I had previously implemented all of these sorts in a project with David and Ethan, so it was pretty easy to recreate this in plain old Java again.
+I had previously implemented all of these sorts in a project with David and Ethan, so it was pretty easy to recreate this in Java again.
 
 ### Comparable object
 First we create a comparable object for our flowers.
