@@ -7,6 +7,19 @@ type: hacks
 comments: True
 ---
 
+# Algohrythmic Event
+For this event, our large group across periods 1 and 2 organized a performance along with some student volunteers from AP CSP to demonstrate how our sorting algorithms function. Notably, we recorded down the performances for at least 3 out of 5 of our practices and have also uploaded them to instagram, where we have garnered widespread internet attention.
+
+![alt text](../assets/img/flower_mergers.png)
+
+For the practices, I found it very hard to coordinate a time where everyone was able to show up on time for practice. We had around 17 people in our group, so most practices consisted of only a majority of people to practice our roles. Nonetheless, the entire project was about understanding how a sort worked, so as we reviewed the concept of mergesort, we found the overall algorithm to be very easy to understand, and subsequently, our performance also became easier to manage. 
+
+In addition to scheduling, we also did a partitition of work for who should work on the project. Most of us were flowers and we assigned Ethan Zhao to be the conductor as he had the loudest voice. Additionally, I helped to design what the flowers for our event should look like, and the idea was subsequently passed onto our other performers to create flowers for the whole team. I also partook in the initial ideation of the project, coming up with the idea of sorting the flowers by the number of petals.
+
+Overall, I found the event very fun as I was able to see what other creative methods other groups found to show off their algorithms. Notably, I really liked that one group who demonstrated both quicksort and bogosort. Although they received criticism for being slightly confusing to the audience, I thought that their premise and idea was very unique and funny to show off an otherwise confusing algorithm to implement.
+
+
+
 ## Learn All Sorts
 I had previously implemented all of these sorts in a project with David and Ethan, so it was pretty easy to recreate this in plain old Java again.
 
@@ -572,6 +585,66 @@ public class FlowerNecklace {
         this.head = head;
     }
 
+    public FlowerNode mergeSort(FlowerNode head) {
+        // Base case: if the list is empty or has only one element, it is already sorted
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+
+        FlowerNode middle = getMiddle(head);
+        FlowerNode nextOfMiddle = middle.next;
+        middle.next = null;
+
+
+        FlowerNode left = mergeSort(head);
+        FlowerNode right = mergeSort(nextOfMiddle);
+
+        // Merge the sorted halves
+        return merge(left, right);
+    }
+
+    private FlowerNode merge(FlowerNode left, FlowerNode right) {
+        FlowerNode dummy = new FlowerNode(null);
+        FlowerNode tail = dummy;
+
+        // Compare the values of the nodes and merge them in ascending order
+        while (left != null && right != null) {
+            if (left.flower.compareTo(right.flower) <= 0) {
+                tail.next = left;
+                left = left.next;
+            } else {
+                tail.next = right;
+                right = right.next;
+            }
+            tail = tail.next;
+        }
+
+        // Append any remaining elements from the left or right lists
+        if (left != null) {
+            tail.next = left;
+        } else {
+            tail.next = right;
+        }
+
+        // Return the head of the merged list, remember TO ACTUALLY SET THE HEAD BRO
+        return dummy.next;
+    }
+
+    // Method to find the middle node of the linked list
+    // GOD BLESS LEETCODE FOR THIS QUESTION BRUH
+    private FlowerNode getMiddle(FlowerNode head) {
+        if (head == null) {
+            return head;
+        }
+        FlowerNode slow = head;
+        FlowerNode fast = head;
+        while (fast.next != null && fast.next.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
 }
 
 public class GenerateLinkedNecklace {
@@ -670,12 +743,17 @@ public class MergeSortFlowerNecklace {
 
 FlowerNecklace flowerNecklace = GenerateLinkedNecklace.generate();
 System.out.println("Flower Necklace before sort: " + flowerNecklace);
-flowerNecklace.setHead(MergeSortFlowerNecklace.mergeSort(flowerNecklace.getHead()));
+flowerNecklace.setHead(flowerNecklace.mergeSort(flowerNecklace.getHead()));
 System.out.println("Flower Necklace before sort: " + flowerNecklace);
 ```
 
     Flower Necklace before sort: (Name: Rose, Petals: 5, Color: Red) -> (Name: Lily, Petals: 6, Color: White) -> (Name: Tulip, Petals: 4, Color: Yellow) -> (Name: Daisy, Petals: 8, Color: Pink) -> (Name: Sunflower, Petals: 3, Color: Yellow) -> (Name: Carnation, Petals: 5, Color: Pink) -> (Name: Orchid, Petals: 7, Color: Purple) -> (Name: Daffodil, Petals: 4, Color: Yellow) -> (Name: Peony, Petals: 6, Color: Pink) -> (Name: Hibiscus, Petals: 5, Color: Red) -> null
 
 
-    Flower Necklace before sort: (Name: Carnation, Petals: 5, Color: Pink) -> (Name: Daffodil, Petals: 4, Color: Yellow) -> (Name: Daisy, Petals: 8, Color: Pink) -> (Name: Hibiscus, Petals: 5, Color: Red) -> (Name: Lily, Petals: 6, Color: White) -> (Name: Orchid, Petals: 7, Color: Purple) -> (Name: Peony, Petals: 6, Color: Pink) -> (Name: Rose, Petals: 5, Color: Red) -> (Name: Sunflower, Petals: 3, Color: Yellow) -> (Name: Tulip, Petals: 4, Color: Yellow) -> null
+    Flower Necklace before sort: (Name: Sunflower, Petals: 3, Color: Yellow) -> (Name: Tulip, Petals: 4, Color: Yellow) -> (Name: Daffodil, Petals: 4, Color: Yellow) -> (Name: Rose, Petals: 5, Color: Red) -> (Name: Carnation, Petals: 5, Color: Pink) -> (Name: Hibiscus, Petals: 5, Color: Red) -> (Name: Lily, Petals: 6, Color: White) -> (Name: Peony, Petals: 6, Color: Pink) -> (Name: Orchid, Petals: 7, Color: Purple) -> (Name: Daisy, Petals: 8, Color: Pink) -> null
 
+
+
+```java
+
+```
