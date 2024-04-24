@@ -53,6 +53,55 @@ BubbleSort.main(null);
 
     Sorted array is: 11 12 22 25 34 64 90 
 
+# Insertion Sort
+Insertion Sort is probably the simplest of all sorting algorithms, and the most intuitive. We select a value and compare it to other values until it's properly sorted. This means we need to traverse through all the values in the array twice, once to select the value and once to compare it to the other values. Thus, you traverse through the array n times, then n times again. This allows us to figure out it's time complexity, which is O(n^2).
+
+## Pseudocode
+We start by selecting the second element of the array and compare it to the 1st. If our selected element is smaller than the 1st, we swap them. We repeat this over and over again until the list is sorted.
+
+```text
+INSERTION-SORT(Array)
+    for index = 0 to length of Array, incrementing index by 1 every time
+        value1 = Array[index]
+        // Insert value1 into the sorted array
+        compareIndex = index + 1
+        while compareIndex < length of Array and Array[indexToSort] > key
+            Array[indexToSort + 1] = Array[indexToSort]
+            indexToSort = indexToSort - 1
+            Array[indexToSort + 1] = key
+```
+
+
+```java
+private static void printArray(int[] array) {
+    for (int i:array) {
+        System.out.print(i + " ");
+    }
+    System.out.println();
+}
+
+public class insertionSort {
+    public static int[] insertionSort(int[] array) {
+        for (int i=1; i<array.length; i++) {
+            int key=array[i];
+            int j=i-1;
+            while (j>=0 && array[j] > key) {
+                array[j+1] = array[j];
+                j--;
+            }
+            array[j+1] = key;
+        }
+        return array;
+    }
+}
+
+int[] array = {5, 3, 7, 2, 8, 1, 9, 4, 0, 6};
+printArray(insertionSort.insertionSort(array));
+```
+
+    0 1 2 3 4 5 6 7 8 9 
+
+
 # Selection Sort
 Selection Sort is an iterative sorting algoritm that repeatedly moves elements into their properly sorted locations in the array. In selection sort, our procedure keeps tracks of two subarrays, a sorted subarray, and an unsorted half. As we iterate through the array, we select the smallest element from the unsorted half of the array and append it to the sorted half. With each subsequent iteration, we are effectively constructing the array in increasing order.
 
@@ -161,7 +210,7 @@ MergeSort.main(null);
 
 
 ## Popcorn Hack
-The current implementation of MergeSort sorts our array in increasing order (least to greatest). Can you adjust this implementation such that it sorts in the inverse order, that is, decreasing order (greatest to least)?
+1. The current implementation of MergeSort sorts our array in increasing order (least to greatest). Can you adjust this implementation such that it sorts in the inverse order, that is, decreasing order (greatest to least)?
 
 
 ```java
