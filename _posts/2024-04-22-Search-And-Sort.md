@@ -127,6 +127,8 @@ MergeSort is a sorting algorithm that relies on recursion to solve what is commo
 In the context of sorting, imagine an initial array of length n. We can reduce the "size" of the problem by passing a smaller size, maybe "n/2", back into our algorithm for a simpler calculation, reducing the complexity. We repeat this process until we hit a sub array of size 1, which is a trvially easy case: the "array" is already sorted. From this point and onwards, we use a procedure called merge to repeatedly re-combine these smaller elements into larger sorted elements, until we eventually get back to the original n length array which should be sorted.
 
 
+![Q12](/assets/img/sorting/MergeSort.png)  
+
 ### MergeSort Pseudo-code
 ```text
 MERGE-SORT(A, p, r)  
