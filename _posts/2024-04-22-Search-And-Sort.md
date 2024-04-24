@@ -7,10 +7,10 @@ type: hacks
 comments: True
 ---
 
-# BubbleSort
+## BubbleSort
 BubbleSort is an iterative sorting algorithm that sorts a collection of objects by swapping adjacent objects if they are in the incorrect order. The algorithm performs multiple passes over the array until it detects no swaps have been made, by which it then stops execution as the array has been sorted.
 
-# BubbleSort Pseudo-code
+### BubbleSort Pseudo-code
 
 ```text
 BUBBLESORT(A[], n)
@@ -20,7 +20,7 @@ BUBBLESORT(A[], n)
         swap(A[j], A[j-1])
 ```
 
-# BubbleSort Code
+### BubbleSort Code
 Given this incomplete code below, fill in the blanks so that the algorithm works as intended
 
 
@@ -53,10 +53,10 @@ BubbleSort.main(null);
 
     Sorted array is: 11 12 22 25 34 64 90 
 
-# Insertion Sort
+## Insertion Sort
 Insertion Sort is probably the simplest of all sorting algorithms, and the most intuitive. We select a value and compare it to other values until it's properly sorted. This means we need to traverse through all the values in the array twice, once to select the value and once to compare it to the other values. Thus, you traverse through the array n times, then n times again. This allows us to figure out it's time complexity, which is O(n^2).
 
-## Pseudocode
+### Pseudocode
 We start by selecting the second element of the array and compare it to the 1st. If our selected element is smaller than the 1st, we swap them. We repeat this over and over again until the list is sorted.
 
 ```text
@@ -102,7 +102,7 @@ printArray(insertionSort.insertionSort(array));
     0 1 2 3 4 5 6 7 8 9 
 
 
-# Selection Sort
+## Selection Sort
 Selection Sort is an iterative sorting algoritm that repeatedly moves elements into their properly sorted locations in the array. In selection sort, our procedure keeps tracks of two subarrays, a sorted subarray, and an unsorted half. As we iterate through the array, we select the smallest element from the unsorted half of the array and append it to the sorted half. With each subsequent iteration, we are effectively constructing the array in increasing order.
 
 ```text
@@ -117,17 +117,17 @@ function Selection-Sort(A[],N)
        A[Smallsub] = temp
 ```
 
-# Popcorn Hack
+### Popcorn Hack
 
 1. Given the pseudo-code for selection sort, rewrite the algorithm in Java such that it sorts in decreasing order, rather than increasing order.
 
-# MergeSort
+## MergeSort
 MergeSort is a sorting algorithm that relies on recursion to solve what is commonly known as a "divide-and-conquer" problem. Essentially, the problem of sorting an array (or any collection of objects really) can be broken down into sub problems which can be recursively solved to be combined into a final solution.
 
 In the context of sorting, imagine an initial array of length n. We can reduce the "size" of the problem by passing a smaller size, maybe "n/2", back into our algorithm for a simpler calculation, reducing the complexity. We repeat this process until we hit a sub array of size 1, which is a trvially easy case: the "array" is already sorted. From this point and onwards, we use a procedure called merge to repeatedly re-combine these smaller elements into larger sorted elements, until we eventually get back to the original n length array which should be sorted.
 
 
-## MergeSort Pseudo-code
+### MergeSort Pseudo-code
 ```text
 MERGE-SORT(A, p, r)  
 if p >= r               // zero or one element?  
@@ -139,7 +139,7 @@ MERGE-SORT(A, q+1, r)   // recursively sort A[q+1:r]
 MERGE(A, p, q, r)  
 ```
 
-## MergeSort Code
+### MergeSort Code
 
 
 ```java
@@ -209,7 +209,7 @@ MergeSort.main(null);
     After array: [1, 3, 4, 6, 7, 9]
 
 
-## Popcorn Hack
+### Popcorn Hack
 1. The current implementation of MergeSort sorts our array in increasing order (least to greatest). Can you adjust this implementation such that it sorts in the inverse order, that is, decreasing order (greatest to least)?
 
 
@@ -217,7 +217,7 @@ MergeSort.main(null);
 // Code Here
 ```
 
-# QuickSort
+## QuickSort
 QuickSort is another divide-and-conquer algorithm that typically operates via recursion. While the sub-problems in mergesort was to repeatedly sort each subarray, the sub-problem in quicksort is to sort each individual element into their rightful place.  
 
 | Vocab | Definition |
@@ -227,7 +227,7 @@ QuickSort is another divide-and-conquer algorithm that typically operates via re
 
 Essentially, the QuickSort algorithm selects a random pivot element with each function call. The algorithm then "partitions" the array around this pivot element, moving all elements lesser than the pivot below the pivot, and all elements greater than the pivot above the pivot. This is done using a procedure "partition" which also returns the index of the sorted pivot element. The index of the sorted pivot element is then used in subsequent calls of the algorithm, where quicksort is called to sort the two remaining unsorted subarrays, until the whole array is sorted.
 
-## QuickSort Pseudo-code
+### QuickSort Pseudo-code
 ```text
 function Quick-Sort(A[], start, end)				
     if start >= end then					    	
