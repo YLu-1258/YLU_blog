@@ -16,8 +16,8 @@ BubbleSort is an iterative sorting algorithm that sorts a collection of objects 
 BUBBLESORT(A[], n)
     for i = 0 to n - 1
         for j = n downto i + 1
-    if A[j] < A[j - 1]
-        swap(A[j], A[j-1])
+            if A[j] < A[j - 1]
+                swap(A[j], A[j-1])
 ```
 
 ### BubbleSort Code
