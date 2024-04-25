@@ -340,14 +340,19 @@ class DiverseArray {
         }
         return sums;
     }
+
+    public static void main(String[] args) {
+        int[][] array = { {1,2,3,4,5}, {6,7,8,9,0} };
+        int[] result = DiverseArray.rowSums(array);
+        System.out.print("Row sums of array: ");
+        for (int i = 0; i<result.length; i++) {
+            System.out.print(result[i] + " ");
+        }
+    }
 }
 
-int[][] array = {{1,2,3,4,5}, {6,7,8,9,0}};
-int[] result = DiverseArray.rowSums(array);
-System.out.print("Row sums of array: ");
-for (int i = 0; i<result.length; i++) {
-    System.out.print(result[i] + " ");
-}
+DiverseArray.main(null);
+
 ```
 
     Row sums of array: 15 30 
@@ -397,8 +402,8 @@ class DiverseArray {
     }
 
     public static void main(String args[]) {
-        int[][] array1 = {{1,2,3,4,5}, {6,7,8,9,0}};
-        int[][] array2 = {{1,1,1,1,1}, {1,1,1,1,1}};
+        int[][] array1 = { {1,2,3,4,5}, {6,7,8,9,0} };
+        int[][] array2 = { {1,1,1,1,1}, {1,1,1,1,1} };
         System.out.print("Array 1 diverse? ");
         System.out.print(DiverseArray.isDiverse(array1) + "\n");
         System.out.print("Array 2 diverse? ");
