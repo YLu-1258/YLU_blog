@@ -177,7 +177,7 @@ System.out.println(g);
 
 **Question:** Why does this code work?
 
-The code works because all of the elements that are added to the ArrayList are the same type (String).
+The code works because all of the elements that are added to the ArrayList are the same type (String). The last Hello that we appended is simply just created with the new keyword. It is still a string nontheless.
 
 ### Deleting Items from an `ArrayList`
 
@@ -273,19 +273,19 @@ System.out.println(result);
 
     * Look back at *Size of the `ArrayList`*. What does the code output and why?
 
-    It looks at the literal size of the list, which is how many elements are present within it, otherwise known as the length.
+    The code outputs the length of the ArrayList which is also the number of total elements within it. We can override this method if we use the iterable interface on a class.
 
     * Look back at *Adding items to an `ArrayList`*. What does the code output and why? What type of function is `void`, and what will be the return value?
 
-    Returns the arraylist with all of its elements that were previously added. a void function does not return anything.
+    The arrayList returns all of its previously added elements before the addition of the new item. A void function is a function that does not have a return type and thus does not return anything back to the user.
 
     * Look back at Example 1. What two lines did we remove? Why?
     
-    we removed the lines trying to add a double and a boolean to the arraylist, as it was specified to only contain string values.
+    We removed the lines that aimed to add a double and a boolean to the arraylist. This is because our arrayList should only accept values that are of the string type and not anything else.
 
     * If an `ArrayList` is being used as a parameter, what are the only two methods I can use from it? What would happen if I tried to use any other methods?
     
-    you can only use get and size. it will only update the local array in the method and not the actual array.
+    The only two methods that we can really use if an ArraList is passed as a parameter is `get` and `size`. THis is because they do not attempt to modify the actual arraylist, but rather only returns attributes about it. If we tried to modify the array, the output would not be changed after the array.
 
 - Using the Hack Helper, write code that will:
 
@@ -300,16 +300,30 @@ System.out.println(result);
 
 ```java
 public class HackHelper {
-    private String manipulateList(ArrayList<Integer> array) {
-        return null;
+    private static String manipulateList(ArrayList<Integer> array) {
+        String res = "Added elements 1 and 2 and then removed element 2 in index 1 and replaced element 1 in index 0 with 3";
+        array.add(1);
+        array.add(2);
+        array.remove(1);
+        array.set(0, 3);
+        System.out.println("First: " + array.get(0) + " Last:" + array.get(array.size()-1));
+        return res;
     }
 
     public static void main(String[] args) {
+        ArrayList<Integer> al = new ArrayList<Integer>();
+        System.out.println(manipulateList(al));
+        System.out.println("Array List: " + al);
     }
 }
 
 HackHelper.main(null);
 ```
+
+    First: 3 Last:3
+    Added elements 1 and 2 and then removed element 2 in index 1 and replaced element 1 in index 0 with 3
+    Array List: [3]
+
 
 # 7.3: Traversing Arraylists
 
@@ -440,6 +454,8 @@ In the realm of algorithms, within the context of specific requirements that dem
 ## Popcorn Hacks:
 
 Before you uncomment the code and run it, guess what the code will do based on what you've learned.
+
+- The code will find the maximum value in the array of values as it iterates through the array and compares each subsequent value to the current maximum.
 
 ### Let's Look at an Example (Example 1)
 
@@ -577,12 +593,14 @@ ArrayListExample.main(null);
 
 - Answer the questions: 
     * Look back at the examples. What's similar? What's different?
+      * We have two types of functions, one that finds the max in an array, and one that finds the minimum of an array. The other difference between them is that they have two types each, an implementation using an array and another using an arrayList. The similarity is that they both iterate through the collection. 
 
     * Why do we use `ArrayList`? Why not just regular lists?
-
-    Regular lists have fixed size in Java.
+      * We use ArrayList instead of regular lists because arraylists have dynamic memory allocation, which means we could eventually add more elements to the arrayList if necessary.
 
 - Demonstrate at least two `ArrayList` methods that aren't `ArrayList<>.size()` and `ArrayList<>.get()`.
+  * `add()`: Adds an element to the arrayList and returns true if successful and false if unsuccessful. Ensure that we are using the same type as the arraylist.
+  * `remove()`: Removes an element from the arrayList and returns the element that is removed.
 
 - Write the method `findSum()` using the Hack Helper and incorporating `ArrayList`.
 
@@ -592,7 +610,11 @@ ArrayListExample.main(null);
 ```java
 public class ArrayListHacks {
     private int findSum(ArrayList<Integer> values) {
-        return 0;
+        int res = 0;
+        for (int value : values) {
+            res+=value;
+        }
+        return res;
     }
 
     public static void main(String[] args) {
@@ -612,7 +634,7 @@ public class ArrayListHacks {
 ArrayListHacks.main(null);
 ```
 
-    0
+    316
 
 
 # 7.5 Searching
@@ -851,3 +873,52 @@ for (int outer = 1; outer < randomList.size(); outer++)
 
 
 ## Complete the hacks in the cell below
+
+
+```java
+class RemoveElement {
+    private static void removeElement(ArrayList<Integer> values, int value) {
+        int i = 0;
+        while (i < values.size()) {
+            if (values.get(i) == value) {
+                values.remove(i);
+            } else {
+                i++;
+            }
+        }
+    }
+
+    public static void insertionSort(ArrayList<Integer> array) {
+        for (int i=1; i<array.size(); i++) {
+            int key=array.get(i);
+            int j=i-1;
+            while (j>=0 && array.get(j) > key) {
+                array.set(j+1, array.get(j));
+                j--;
+            }
+            array.set(j+1, key);
+        }
+    }
+
+    public static void main(String[] args) {
+        ArrayList<Integer> list = new ArrayList<>(Arrays.asList(40, 20, 40, 30, 10, 50, 40, 20, 10, 20, 50));
+        System.out.println("Before: " + list);
+        removeElement(list, 20);
+        System.out.println("After: " + list);
+        insertionSort(list);
+        System.out.println("After: " + list);
+    }
+}
+
+RemoveElement.main(null);
+```
+
+    Before: [40, 20, 40, 30, 10, 50, 40, 20, 10, 20, 50]
+    After: [40, 40, 30, 10, 50, 40, 10, 50]
+    After: [10, 10, 30, 40, 40, 40, 50, 50]
+
+
+
+```java
+
+```
