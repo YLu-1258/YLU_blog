@@ -165,9 +165,43 @@ LinearSearch.example2(null);
 ## Popcorn Hack
 1. Implement linear search for an array list of integers
 
+
+```java
+import java.util.ArrayList;
+import java.util.Arrays;
+
+class LinearSearchList {
+    public static int linearSearch(ArrayList<Integer> array, int target) {
+        for (int i = 0; i < array.size(); i++) {
+            if (array.get(i) == target) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        ArrayList<Integer> test = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9));
+        int target = 8;
+        int position = linearSearch(test, target);
+        if (position != -1) {
+            System.out.println("Position of element " + target + ": " + position);
+        } else {
+            System.out.println("Element " + target + " not found in the list.");
+        }
+    }
+}
+
+
+LinearSearchList.main(null);
+```
+
+    Position of element 8: 7
+
+
 2. When is it preferred to use linear search over binary search?
 
-(answer here)
+It is preferred to use linear search over binary search when our array in question is not sorted. If the array is not sorted, then the principle of binary search does not work and it will be unable to locate the target element. Hence, we use linear search
 
 <h2> Recursive algorithms </h2>
 
@@ -181,6 +215,10 @@ LinearSearch.example2(null);
 <h4> Popcorn Hack </h4>
 
 What are some examples of algorithms that would be useful to have recursion? 
+ * Sorting algorithms
+ * Fibonacci algorithm
+ * Factorial algorithm
+ * Divide and Conqure algorithms
 
 <h2> Binary Search </h2>
 
@@ -252,6 +290,8 @@ BinarySearch.main(null);
 <h4> Popcorn Hack </h4>
 
 What iteration did it find f?
+
+* The second iteration as it is the the mid point of the 2nd sub array.
 
 ## Hashmap searching
 
@@ -414,18 +454,25 @@ public class Garage {
         }
     }
 
+    public Car remove(String key) {
+        return garage.remove(key);
+    }
+
     public static void main(String[] args) {
         Garage myGarage = new Garage();
         myGarage.printGarage();
 
         // Removing a car from the garage tester code
-        // String key = "Lambo";
-        // Car car = garage.remove(key);
-        // if (car == null) {
-        //     System.out.println(key + " not found");
-        // } else {
-        //     System.out.println("Removed: " + key + ", " + car);
-        // }
+        String key = "Lambo";
+        Car car = garage.remove(key);
+        if (car == null) {
+            System.out.println(key + " not found");
+        } else {
+            System.out.println("Removed: " + key + ", " + car);
+        }
+
+        System.out.println();
+        myGarage.printGarage();
     }
 }
 
@@ -436,19 +483,28 @@ Garage.main(null);
     Porsche: 2021 Porsche 911 Turbo S
     Lambo: 2021 Lamborghini Aventador
     McLaren: 2021 McLaren 720S
+    Removed: Lambo, 2021 Lamborghini Aventador
+    
+    Ferrari: 2021 Ferrari F8 Tributo
+    Porsche: 2021 Porsche 911 Turbo S
+    McLaren: 2021 McLaren 720S
 
 
 # HACKS (you should be able to do with chatgpt)
 
 1. Is sequential/linear or binary more efficient? Why?
+* Binary search is more efficient for sorted arrays as it is capable of finding a sub array of target values rather than searching through every value as it eliminates elements that could not possibly be correct.
 2. Why might you not always be able to use binary search?
-3. Which of the following implements a method named contains for searching an array sequentially, confirming whether or not the array contains a requested element?
+* If the list isn't sorted, the logic for binary search wouldn't always work as the larger elements may not be to the "right" of the smaller elements
 
+3. Which of the following implements a method named contains for searching an array sequentially, confirming whether or not the array contains a requested element?
+* 4, as options 2 and 3 may override the correct response due to the logic and option 1 is just a regular sequential sort algorithm. Option 4 sequentially searches for a match and returns a boolean value. 
 
 ![](https://raw.githubusercontent.com/Codemaxxers/codemaxxerblog/main/images/4isanswer.jpg)
 
 # Answer the comment in the code
 
+```java
 public static int foo(int[] arr, int x) {
 
     for(int i = 0; i < arr.length; i++) {
@@ -464,9 +520,10 @@ public static int foo(int[] arr, int x) {
     return -1;
 
 }
+```
 
 Given the method defined above, how many times is the word "Indubitably!" output by the code below?
-
+```java
 int[] vals = {1,4,51,3,14,91,130,14};
 
 for(int i = 0; i < 20; i++) {
@@ -477,6 +534,10 @@ for(int i = 0; i < 20; i++) {
 
     }
 
+
 }
+```
+
+* The word "Indubitably" is printed a total of 10 times. Our only values of interest are 1 and 3, so we just need to count how many times those values are **NOT** found by the function foo, which is just a sequential search algorithm. This only occurs on non-odd values between 0 and 19, which are 1,3,5,7,9,11,13,15,17,19 respectively, which is 10 cases for when the condition would be satisfied and "Indubitably!" would be printed.
 
 ### Answer:
