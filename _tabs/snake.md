@@ -1,12 +1,6 @@
 ---
-layout: page
-title: Snake Game
-author: alex
-date: 2023-08-20 10:00:00 -0800
-type: hacks
-categories: [hacks]
-tags: [JS, HTML, CSS, game]
-week: 0
+icon: fas fa-staff-snake
+order: 6
 ---
 <style>
     #game-container {
@@ -31,6 +25,7 @@ week: 0
         background-color: rgb(87, 125, 160);
         height: 400px;
         width: 400px;
+        margin-left: -8%;
     }
     #popup {
         margin-left: 20%;

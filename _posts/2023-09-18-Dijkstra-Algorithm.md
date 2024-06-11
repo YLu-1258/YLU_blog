@@ -38,8 +38,6 @@ import java.util.Stack;
 public class Node {
     private int VerticeIndex;
     private HashMap<Integer, Integer> Edges;
-    private int CoordX;
-    private int CoordY;
 
     Node (int ProvidedIndexFromFrontend) {
         this.VerticeIndex = ProvidedIndexFromFrontend; 
@@ -240,14 +238,29 @@ for (int i = 0; i < sampleAdjacencyList.length; i++ ) {
 }
 ```
 
-
-    |           for (int index = 1; index <=adjacencyList.lenth; index++) {         // Initialize the new nodes 
-
-    cannot find symbol
-
-      symbol:   variable lenth
-
-    
+    1 : {2=3, 3=6, 10=50}
+    2 : {1=3, 3=2, 4=6, 10=40}
+    3 : {1=6, 2=2, 4=7, 5=8}
+    4 : {2=6, 3=7, 5=1, 6=8}
+    5 : {3=8, 4=1, 6=4, 7=10}
+    6 : {4=8, 5=4, 7=6, 8=10}
+    7 : {5=10, 6=6, 8=8, 9=2}
+    8 : {6=10, 7=8, 9=9, 10=20000}
+    9 : {7=2, 8=9, 10=1000}
+    10 : {1=50, 2=40, 8=20000, 9=1000}
+    11 : {}
+    11
+    0 3 6 0 0 0 0 0 0 50 0 
+    3 0 2 6 0 0 0 0 0 40 0 
+    6 2 0 7 8 0 0 0 0 0 0 
+    0 6 7 0 1 8 0 0 0 0 0 
+    0 0 8 1 0 4 10 0 0 0 0 
+    0 0 0 8 4 0 6 10 0 0 0 
+    0 0 0 0 10 6 0 8 2 0 0 
+    0 0 0 0 0 10 8 0 9 20000 0 
+    0 0 0 0 0 0 2 9 0 1000 0 
+    50 40 0 0 0 0 0 20000 1000 0 0 
+    0 0 0 0 0 0 0 0 0 0 0 
 
 
 ## Dijkstra methods
@@ -345,17 +358,17 @@ public class DijkstraAlgorithm {
 DijkstraAlgorithm.main(null);
 ```
 
+    Shortest distance from vertex 9 to vertex 10 is: 59
+    Shortest distance from vertex 9 to vertex 5 is: 12
+    Shortest distance from vertex 9 to vertex 7 is: 2
+    Shortest distance from vertex 9 to vertex 9 is: 0
     Shortest distance from vertex 9 to vertex 2 is: 19
+    Shortest distance from vertex 9 to vertex 1 is: 22
+    Shortest distance from vertex 9 to vertex 8 is: 9
     Shortest distance from vertex 9 to vertex 3 is: 20
     Shortest distance from vertex 9 to vertex 4 is: 13
-    Shortest distance from vertex 9 to vertex 5 is: 12
-    Shortest distance from vertex 9 to vertex 8 is: 9
-    Shortest distance from vertex 9 to vertex 7 is: 2
-    Shortest distance from vertex 9 to vertex 10 is: 59
-    Shortest distance from vertex 9 to vertex 1 is: 22
     Shortest distance from vertex 9 to vertex 6 is: 8
     Shortest distance from vertex 9 to vertex 11 is: 2147483646
-    Shortest distance from vertex 9 to vertex 9 is: 0
     2
     HELLLLLLLLLO IF THIS RUNS I THINK JAVA IS BROKEN
     [10, 2, 4, 5, 7, 9]
