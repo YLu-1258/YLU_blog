@@ -117,3 +117,4 @@ Intel CEO Gordon Moore proposed **Moore's Law** which predicted the growth of co
 Modern computers use varying voltage levels (low and high) to describe data values. Voltage that is interpreted by computers is thus analog.
 
 ## Binary and Hexadecimal Numbers
+The **bit** is the smallest unit of digital information, which is a discrete element of data measuring either 0 or 1. A collection of 8 bits can form a singular value called a **byte** which is also the smallest unit of information that can be read or written to memory in modern processors. 
