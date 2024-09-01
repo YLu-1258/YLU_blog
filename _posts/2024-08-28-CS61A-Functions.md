@@ -8,12 +8,33 @@ date: 2024-08-28 02:00:00 -0800
 tags: ['CS61A', 'functions']
 ---
 
+# Elements of Programming
+- A programming language provides many means for how to combine simple ideas to perform complex actions. There are three main considerations:
+    - **Primitive expressions and statements**: The most basic building blocks of a language
+    - **Means of combination**: To combine simple components to make more complex ones. 
+    - **Means of Abstraction**: To assign a name to a complex/compound element and use it as a simple unit.
+
 # Expressions
+
+## Primitive Expressions
+- A simple example of a primitive expresssion in python is an **integer**
+    - Integers may be combined with math operators such as + or - to form compound expressions.
+    - \+ - * / are examples of *infix notation*, as they appear between the elements
+
+## Call Expressions
+- Simply applies a function to given arguments.
+    - May be divided into an operator (the function), and the operands (the arguments).
+- A function also has a return value
+
+## Assignment Statements
+- Assigning values/data to a name is the simplest example of abstraction within the Python language.
+- In any assignment statement, the expression to the right of the = is always expressed first.
 - Most things have a representation in Python. For example, Pi.
     - However, to properly use Pi, we have to first import it with a statement like `from math import pi`
 - Additionally, Python also enables us the feature to assign values to a name through **assignment statements**
     - Ex: radius = 10
 - Consider the Code:
+
 
 
 ```python

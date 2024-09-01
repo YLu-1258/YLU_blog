@@ -13,10 +13,11 @@ tags: ['CS61A', 'Environmental Diagrams']
 - Memory that keeps track of bindings between names and values.
 - Expressed in the form of pictures
 - Operates in the form of frames. Each frame represents a subroutine, with the main program executing in the global frame.  
-| Code | Frames |  
-| - | - |  
-| Statements and expressions | Each name is bound to a value |  
-| Arrows indicate evaluation order | Within a frame, a name cannot be repeated (collisions). Must be counded to one value|  
+
+| Code | Frames |
+|-|-|
+| Statements and expressions | Each name is bound to a value |
+| Arrows indicate evaluation order | Within a frame, a name cannot be repeated (collisions). Must be counded to one value|
 
 - Once a new binding is created, the name loses its original value.
 - We can practice drawing the environmental diagrams at [this link](https://pythontutor.com/cp/composingprograms.html#mode=display)
