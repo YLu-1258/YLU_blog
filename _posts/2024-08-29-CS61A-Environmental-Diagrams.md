@@ -1,5 +1,5 @@
 ---
-title: Environmental Diagrams
+title: CS61A:  Environmental Diagrams
 author: alex
 badges: True
 comments: True

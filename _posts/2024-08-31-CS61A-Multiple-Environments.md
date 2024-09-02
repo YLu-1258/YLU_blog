@@ -1,5 +1,5 @@
 ---
-title: Multiple Environments
+title: CS61A: Multiple Environments
 author: alex
 badges: True
 comments: True
