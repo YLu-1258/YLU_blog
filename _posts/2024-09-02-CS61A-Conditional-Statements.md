@@ -1,10 +1,10 @@
 ---
-title: CS61A: Iteration
+title: 'CS61A: Conditional Statements'
 author: alex
 badges: True
 comments: True
 categories: ['CS61A']
-date: 2024-08-31 02:00:00 -0800
+date: 2024-09-02 02:00:00 -0800
 tags: ['CS61A', 'Conditional']
 ---
 
@@ -15,6 +15,9 @@ tags: ['CS61A', 'Conditional']
         - The statements within a clause is known as the **Suite**
 - An example of a compound statement is a function declaration.
     - The suite of a function is known as the function body.
+
+
+```python
 <header>:           // The first header determines the type of a statement
     <statement>
     <statement>
@@ -24,6 +27,8 @@ tags: ['CS61A', 'Conditional']
     <statement>
     ...
 ...
+```
+
 - When we execute a suite, we run the sequence of the statements within the suite in order.
 - **Execution Rule:**
     - Execute the first statement

@@ -1,5 +1,5 @@
 ---
-title: CS61A: Functions
+title: 'CS61A: Functions'
 author: alex
 badges: True
 comments: True

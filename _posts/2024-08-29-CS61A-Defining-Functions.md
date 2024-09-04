@@ -1,5 +1,5 @@
 ---
-title: CS61A: Defining Functions
+title: 'CS61A: Defining Functions'
 author: alex
 badges: True
 comments: True

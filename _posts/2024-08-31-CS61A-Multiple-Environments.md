@@ -1,5 +1,5 @@
 ---
-title: CS61A: Multiple Environments
+title: 'CS61A: Multiple Environments'
 author: alex
 badges: True
 comments: True
@@ -50,8 +50,3 @@ tags: ['CS61A', 'Environmental Diagrams']
     - The function body creates another frame (an "earlier" environment)
     - Because of this, we have have functions that have the same name as their parameters.
 
-
-
-```python
-
-```

@@ -1,5 +1,5 @@
 ---
-title: CS61A: Conditional Statements
+title: 'CS61A: Conditional Statements'
 author: alex
 badges: True
 comments: True

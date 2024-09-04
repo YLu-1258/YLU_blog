@@ -1,5 +1,5 @@
 ---
-title: CS61A: Print and None type
+title: 'CS61A: Print and None type'
 author: alex
 badges: True
 comments: True

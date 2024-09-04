@@ -1,5 +1,5 @@
 ---
-title: CS61A: Miscellaneous Python Features
+title: 'CS61A: Miscellaneous Python Features'
 author: alex
 badges: True
 comments: True
