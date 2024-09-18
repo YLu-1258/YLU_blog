@@ -1,5 +1,5 @@
 ---
-title: 'CS61A: Lecture 6'
+title: 'CS61A: Decorators'
 author: alex
 badges: True
 comments: True
