@@ -1,0 +1,168 @@
+---
+title: 'CS61A: Lecture 14'
+author: alex
+badges: True
+comments: True
+categories: ['CS61A']
+date: 2024-09-30 6:00:00 -0800
+math: True
+tags: ['CS61A', 'mutability']
+---
+
+# Mutability
+- In the way that names refer to values, we can have multiple names refer to the same values
+    - The names declared within functions may also refer to values outside of the scope of the function
+
+
+```python
+s = [3, 3, 7, 9]
+u = s
+print("original s:", s)
+s[1] = 5
+s.append(11)
+print("New length of s: ", len(s))
+print("What is u?", u)
+def f(r):
+    r.append(13)
+f(s)
+print("What is u now?", u)
+```
+
+    original s: [3, 3, 7, 9]
+    New length of s:  5
+    What is u? [3, 5, 7, 9, 11]
+    What is u now? [3, 5, 7, 9, 11, 13]
+
+
+- The reason that u is updated even after the function call is because s is passed into the function. Thus, both r and u point to the same list that s is pointing to.
+- Mutable values include lists. Integers and strings are immutable values.
+    - Strings are not lists. They have similar properties, but ultimately still different.
+
+
+```python
+word = "wonderful"
+words = ["wonderful", "world"]
+" ".join(words)
+```
+
+
+
+
+    'wonderful world'
+
+
+
+- The type system in python means that one name could refer to a value, but that reference may be changed later on.
+
+## Building a new list
+- We may do so with list comprehension, but we may also use a for-loop, and there is a difference
+
+
+```python
+s = [3, 5, 7, 9, 11, 13]
+u = s
+print("Current s:", s)
+print("Current u:", u)
+t = [x+3 for x in s] # This creates a new list
+v = s[:]
+print("-"*40)
+for i in range(len(s)): # This modifies the original list
+    s[i] = s[i] + 3
+print("current t:", t)
+print("Current s:", s)
+print("current u:", u)
+print("current v:", v)
+```
+
+    Current s: [3, 5, 7, 9, 11, 13]
+    Current u: [3, 5, 7, 9, 11, 13]
+    ----------------------------------------
+    current t: [6, 8, 10, 12, 14, 16]
+    Current s: [6, 8, 10, 12, 14, 16]
+    current u: [6, 8, 10, 12, 14, 16]
+    current v: [3, 5, 7, 9, 11, 13]
+
+
+- We may create a new list with the following strategies
+    - Assign the name to a slice of a list
+    - Apply the `list()` constructor
+    - Use list comprehension
+    - Literally creating a new list.
+- Whenever we create a new list, that name is bound to a new value that is separate from the original list from which the copy was created.
+
+
+```python
+def sums(n, m):
+    """Review this problem, why use min(m+1, n)????"""
+    result = []
+    for k in range(1, min(m+1, n)):
+        for rest in sums(n-k, m):
+            if rest[0] != k:
+                result.append([k] + rest)
+    if n<=m:
+        result.append([n])
+    return result
+
+sums(5,5)
+```
+
+
+
+
+    [[1, 3, 1], [1, 4], [2, 1, 2], [2, 3], [3, 2], [4, 1], [5]]
+
+
+
+- A list describes a path if it contains labels along a path from the root of a tree. Implement make_path, which takes a tree t with unique labels and a list p that starts with the root label of t. It returns the tree u with the fewest nodes that contains all the paths in t as well as (possibly new) path p.
+
+
+
+```python
+from tree import *
+def make_path(t1, p):
+    assert p[0] == label(t), 'Impossible'
+    if len(p) == 1:
+        return t
+    new_branches = []
+    found_p1 = False
+    for b in branches(t):
+        if label(b) == p[1]:
+            new_branches.append(make_path(b, p[1:]))
+            found_p1 = True
+        else:
+            new_branches.append(b)
+    if not found_p1:
+        new_branches.append(make_path(tree(p[1]),p[1:]))
+    return tree(label(t), new_branches)
+
+```
+
+# Sameness and Change
+- As long as we never modify objects, a compound object is just the totality of its pieces.
+
+## Identity Operators
+- **Identity**:
+    - `<exp0> is <exp1>`
+    - Evaluates to True if both `<exp0>` and `<exp1>` evaluate to the same object
+- **Equality**
+    - `<exp0> == <exp1>`
+    - Evaluates to True if both `<exp0>` and `<exp1>` evaluates to the same value.
+
+
+```python
+def make_path(t1, p):
+    assert label(t1) == p[0], "Impossible"
+    found_p1 = False
+    new_branches_to_add = []
+    if (len(p) == 1):
+        return t1
+    for branch in branches(t1):
+        if label(branch) == p[1]:
+            found_p1 = True
+            new_branches_to_add.append(make_path(branch, p[1:]))
+        else:
+            new_branches_to_add.append(branch)
+    if not found_p1:
+        new_branches_to_add.append(make_path(tree(p[1]), p[1:]))
+    return tree(p[0], new_branches_to_add)
+```
