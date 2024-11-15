@@ -1,0 +1,8 @@
+(define (star n m)
+    (let ((a (/ (* 360 m) n)))
+        (define (side k)
+            (if (< k n) (begin (fd 100) (rt a) (side (+ k 1))))
+        )
+        (side 0)
+    )
+)
