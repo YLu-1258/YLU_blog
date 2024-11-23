@@ -36,7 +36,7 @@ tags: ['CS61A', 'Scheme']
 
 
 ```python
-(cdr x)     # (2)
+(cdr x) # (2)
 ```
 
 - To retrieve 2:
@@ -123,3 +123,106 @@ scm> '(1 (2 3) 4)
     - `(map f s)`: call a procedure f on each element of a list s and list the results
     - `(filter f s)`: call a procedure f on each element of a list s and list the elements for which a true value is the result.
     - `(apply f s)`: call a procedure f with the elements of a list as its arguments.
+
+# Example: Even Subsets
+- A non-empty subset of a list s is a list containing some of the elements of s.
+- Create a procedure that generates non-empty subsets of an integer list s that have an even sum
+- For each element in the list we perform the following:
+    - If the element is even, we just add that element to our solution
+    - Additionally:
+        - If the element is even, we append it to all even subsets of the rest of s
+        - If the element is odd, we append it to all odd subsets of s
+- Final solution is:
+    - All even-subsets of the rest of s
+    - All even-subsets constructed with the first element of s with the possible subsets of the rest of s.
+- We stop recursing once the list is nil.
+
+
+```python
+(define (even-subsets s)
+    (if (null? s)
+        nil
+        (append 
+            (even-subsets (cdr s))
+            (map (lambda (x) (cons (car s) x)) 
+                (if (even? (car s))
+                    (even-subsets (cdr s))
+                    (odd-subsets (cdr s))
+                )
+            )
+            (if (even? (car s)) (list (list (car s))) nil)
+        )
+    )
+)
+
+(define (odd-subsets s)
+    (if (null? s)
+        nil
+        (append 
+            (odd-subsets (cdr s))
+            (map (lambda (x) (cons (car s) x)) 
+                (if (even? (car s))
+                    (odd-subsets (cdr s))
+                    (even-subsets (cdr s))
+                )
+            )
+            (if (odd? (car s)) (list (list (car s))) nil)
+        )
+    )
+)
+```
+
+- We may reduce redundancy in the code by a higher order function
+
+
+```python
+(define (even-subsets s)
+    (if (null? s)
+        nil
+        (append 
+            (even-subsets (cdr s))
+            (subset-helper even? s)
+        )
+    )
+)
+
+(define (odd-subsets s)
+    (if (null? s)
+        nil
+        (append 
+            (odd-subsets (cdr s))
+            (subset-helper odd? s)
+        )
+    )
+)
+
+(define (subset-helper f s)
+    (append (map (lambda (x) (cons (car s) x)) 
+        (if (f (car s))
+            (even-subsets (cdr s))
+            (odd-subsets (cdr s))
+        )
+    )
+    (if (f (car s)) (list (list (car s))) nil))
+)
+```
+
+- Alternative method using filter
+
+
+```python
+(define (even-subsets s)
+    (filter (lambda (x) (even? (apply + x))) (subsets s))
+)
+
+(define (subsets s)
+    (if (null? s)
+        nil
+        (append 
+            (subsets (cdr s))
+            (list (list (car s)))
+            (map (lambda (x) (cons (car s) x)) (subsets (cdr s)))
+        )
+    )
+)
+```
