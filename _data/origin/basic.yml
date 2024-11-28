@@ -1,3 +1,13 @@
+(define-macro (trace expr)
+    (define operator (car expr))
+    `(begin
+        (define original ,operator)
+        (define ,operator ,('lambda (n) `(print (list ,operator n)) (original n)))
+        (define result (original ,(car (cdr expr))))
+        (define ,operator original)
+        result
+    )
+)
 # fonts
 
 webfonts: /assets/lib/fonts/main.css
