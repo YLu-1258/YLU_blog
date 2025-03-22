@@ -106,7 +106,7 @@ private Node put(Node h, Key key, Value val) {
     else if (cmp > 0) { h.right = put(h.right, key, val); }
     else              { h.val   = val;                    }
 
-    if (isRed(h.right) && !isRed(h.left))      { h = rotateLeft(h);  }
+    if (isRed(h.right) && !is	Red(h.left))      { h = rotateLeft(h);  }
     if (isRed(h.left)  &&  isRed(h.left.left)) { h = rotateRight(h); }
     if (isRed(h.left)  &&  isRed(h.right))     { flipColors(h);      } 
 
